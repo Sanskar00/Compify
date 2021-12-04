@@ -10,7 +10,7 @@ const ProductSchema = new mongoose.Schema({
     required: true,
   },
   productPrice: {
-    type: String,
+    type: Number,
     required: true,
   },
   display: {
@@ -51,6 +51,14 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isCart: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    },
+  ],
   customerReviews: [
     {
       user: {

@@ -7,6 +7,7 @@ const PersonalInfo = require("../../models/Personal");
 const stripe = require("stripe")(
   "sk_test_51K0RvbSHqep0AJHb2OtPSGvXHWMWjJWaz3TaYVmvmtc7Q36ZJA794yQFWfAUkWbCsiKPyst5ibIhOKxCM8p4VUFq008CEnTj8T"
 );
+const bcypt = require("bcryptjs");
 
 //@route put api/personalInfo/address/
 //@desc Add a address
@@ -103,13 +104,44 @@ router.post(
   }
 );
 
+//@route put api/personalInfo/address/
+//@desc get adresses
+//@access Protected
 router.get("/address", auth, async (req, res) => {
   try {
     const personalInfo = await PersonalInfo.findOne({ user: req.user.id });
 
     if (!personalInfo) {
-      return res.status(404).json({ msg: "Product not found" });
+      return res.status(404).json({ msg: "No Personal Info found" });
     }
+    res.json(personalInfo.addresses);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+
+    console.log(req.body);
+  }
+});
+
+//@route put api/personalInfo/address/delelte
+//@desc delelte adress
+//@access Protected
+router.delete("/address/delete/:addressId", auth, async (req, res) => {
+  try {
+    const personalInfo = await PersonalInfo.findOne({ user: req.user.id });
+    if (!personalInfo) {
+      return res.status(404).json({ msg: "No Personal Info found" });
+    }
+
+    const addresses = personalInfo.addresses;
+
+    const fileteredAddresses = addresses.filter(
+      (address) => address.id !== req.params.addressId
+    );
+
+    personalInfo.addresses = fileteredAddresses;
+    await personalInfo.save();
+
     res.json(personalInfo.addresses);
   } catch (err) {
     console.error(err.message);
@@ -131,47 +163,65 @@ router.post("/v1/checkout/sessions", auth, async (req, res) => {
     const customerData = customers.data;
     const isID = customerData.find((data) => data.id === user.customerIdStripe);
 
+    let customer = "";
+
     // checking customer stripe id
     if (isID) {
-      const customer = await stripe.customers.retrieve(user.customerIdStripe);
-      customer_Id = customer.id;
-      const session = await stripe.checkout.sessions.create({
-        mode: "setup",
-        payment_method_types: ["card"],
-        success_url:
-          "https://localhost:4242/sucess?sessionId={CHECKOUT_SESSION_ID}",
-        cancel_url: "https://localhost:4242/cancel",
-        customer: customer_Id,
-      });
-
-      const session_url = session.url;
-
-      res.json({ session, customer, session_url });
+      customer = await stripe.customers.retrieve(user.customerIdStripe);
     } else {
-      const customer = await stripe.customers.create({
+      customer = await stripe.customers.create({
         name: `${user.name}`,
         email: `${user.email}`,
       });
-
-      customer_Id = customer.id;
 
       await User.updateOne(
         { user: req.user.id },
         { customerIdStripe: customer.id }
       );
       await user.save();
-      const session = await stripe.checkout.sessions.create({
-        mode: "setup",
-        payment_method_types: ["card"],
-        success_url:
-          "https://localhost:4242/sucess?sessionId={CHECKOUT_SESSION_ID}",
-        cancel_url: "https://localhost:4242/cancel",
-        customer: customer_Id,
+    }
+    const session = await stripe.checkout.sessions.create({
+      mode: "setup",
+      payment_method_types: ["card"],
+      success_url:
+        "https://localhost:3000/sucess?sessionId={CHECKOUT_SESSION_ID}",
+      cancel_url: "https://localhost:3000/",
+      customer: customer.id,
+    });
+
+    const session_url = session.url;
+
+    res.json({ session, session_url });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+
+    console.log(req.body);
+  }
+});
+
+//@route get /v1/customers/cards/:id
+//@desc get a card list
+//@access Protected
+router.get("/v1/customers/cards", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+
+    const customers = await stripe.customers.list();
+
+    const customerData = customers.data;
+    const isID = customerData.find((data) => data.id === user.customerIdStripe);
+
+    if (isID) {
+      const cards = await stripe.paymentMethods.list({
+        customer: user.customerIdStripe,
+        type: "card",
       });
-
-      const session_url = session.url;
-
-      res.json({ session, customer, session_url });
+      return res.json(cards.data);
+    } else {
+      return res.status(400).json({
+        errors: [{ msg: "No card is added" }],
+      });
     }
   } catch (err) {
     console.error(err.message);
@@ -181,8 +231,34 @@ router.post("/v1/checkout/sessions", auth, async (req, res) => {
   }
 });
 
-//@route put api/personalInfo/card
-//@desc Add a card
+//@route delete /v1/customers/cards/delete/:cardId
+//@desc delete a card
 //@access Protected
+router.delete("/v1/customers/cards/delete/:cardId", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+
+    const customers = await stripe.customers.list();
+
+    const customerData = customers.data;
+    const isID = customerData.find((data) => data.id === user.customerIdStripe);
+
+    if (isID) {
+      const paymentMethod = await stripe.paymentMethods.detach(
+        req.params.cardId
+      );
+
+      res.json(paymentMethod);
+    } else {
+      return res.status(400).json({
+        errors: [{ msg: "No card is added" }],
+      });
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+    console.log(req.body);
+  }
+});
 
 module.exports = router;
