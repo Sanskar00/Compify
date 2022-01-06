@@ -51,6 +51,12 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  featuredProduct: {
+    type: Boolean,
+    default: false,
+  },
+
   isCart: [
     {
       user: {

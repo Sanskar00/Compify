@@ -87,7 +87,7 @@ router.post(
 );
 
 //@route Get api/products
-//@desc Get a products
+//@desc Get all products
 //@access Public
 router.get("/", async (req, res) => {
   try {
@@ -187,6 +187,21 @@ router.get("/myReviews/reviews", auth, async (req, res) => {
 
     res.json(products);
   } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+
+    console.log(req.body);
+  }
+});
+
+//@route Get api/product/gaming
+//@desc Get a gaming laptops
+//@access private
+router.get("/laptopType/", async (req, res) => {
+  try {
+    const gamingProducts = await Product.find();
+    res.json(gamingProducts);
+  } catch (error) {
     console.error(err.message);
     res.status(500).send("Server error");
 
