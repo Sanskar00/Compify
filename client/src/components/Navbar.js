@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const Navbar = (props) => {
   return (
-    <div>
+    <div className="aboslute w-full">
       <div className="grid grid-cols-3 gap-3 h-12 bg-new-blue text-white font-bold place-items-center ">
         <div className="w-1/6">
           <h1 className="text-xl cursor-pointer">Compify</h1>
@@ -15,7 +15,7 @@ const Navbar = (props) => {
             placeholder="Search for laptops"
           ></input>
         </div>
-        <div className="flex w-2/3 ">
+        <div className="flex w-2/3 left-0">
           <ul className="flex  text-base space-x-6  ">
             <li>
               <a>
@@ -47,7 +47,7 @@ const Navbar = (props) => {
               </a>
             </li>
             <li>
-              <div className="h-5 w-15 bg-flame-orange transition-colors duration-150 rounded-full hover:bg-light-flame-orange text-sm mt-1 cursor-pointer">
+              <div className="h-5 w-15 bg-light-flame-orange transition-colors duration-150 rounded-full hover:bg-flame-orange text-sm mt-1 cursor-pointer">
                 <a>
                   <span className="p-2">login</span>
                 </a>
