@@ -101,6 +101,57 @@ router.get("/", async (req, res) => {
   }
 });
 
+//@route Get api/product/featredProducts
+//@desc Get a featured products
+//@access Public
+router.get("/featuredProducts", async (req, res) => {
+  try {
+    const featuredProducts = await Product.find({
+      featuredProduct: true,
+    });
+    res.json(featuredProducts);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+
+    console.log(req.body);
+  }
+});
+
+//@route Get api/product/topFeatured
+//@desc Get a top featured product
+//@access Public
+router.get("/topFeatured", async (req, res) => {
+  try {
+    const topFeaturedProducts = await Product.find({
+      topFeatured: true,
+    });
+    res.json(topFeaturedProducts);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+
+    console.log(req.body);
+  }
+});
+
+//@route Get api/product/laptopType
+//@desc Get a types of laptop
+//@access Public
+router.get("/:laptopType", async (req, res) => {
+  try {
+    const topFeaturedProducts = await Product.find({
+      laptopType: req.params.laptopType,
+    });
+    res.json(topFeaturedProducts);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+
+    console.log(req.body);
+  }
+});
+
 //@route Get api/product/:id
 //@desc Get a product
 //@access Public
@@ -187,21 +238,6 @@ router.get("/myReviews/reviews", auth, async (req, res) => {
 
     res.json(products);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
-
-    console.log(req.body);
-  }
-});
-
-//@route Get api/product/gaming
-//@desc Get a gaming laptops
-//@access private
-router.get("/laptopType/", async (req, res) => {
-  try {
-    const gamingProducts = await Product.find();
-    res.json(gamingProducts);
-  } catch (error) {
     console.error(err.message);
     res.status(500).send("Server error");
 

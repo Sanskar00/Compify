@@ -4,10 +4,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "new-blue": "#00B2FF",
+        "new-blue": "#01BAEA",
         "flame-orange": "#FF4D00",
         "light-flame-orange": "#FF6F00",
-        fill: ["hover", "focus"],
+
+        slate: "rgb(248 250 252)",
+        "slate-900": "rgb(15 23 42)",
+      },
+      width: {
+        128: "32rem",
       },
     },
   },

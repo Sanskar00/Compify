@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Carousel from "../components/Carousel";
+import Carousel from "../components/Carousel/Carousel";
 import LatpopType from "../components/LatpopType";
 
 const HomePage = (props) => {
   return (
-    <div>
+    <div className="relative z-1">
       <Carousel />
       <LatpopType />
     </div>

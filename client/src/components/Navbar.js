@@ -1,22 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import Button from "./Button";
+import Search from "./Search";
 
-const Navbar = (props) => {
+const Navbar = () => {
   return (
-    <div className="aboslute w-full">
-      <div className="grid grid-cols-3 gap-3 h-12 bg-new-blue text-white font-bold place-items-center ">
+    <div className="fixed z-10 top-0 left-0 w-full">
+      <div className="grid grid-cols-3 gap-3 h-12 bg-new-blue text-white font-bold place-items-center  ">
         <div className="w-1/6">
-          <h1 className="text-xl cursor-pointer">Compify</h1>
+          <h1 className="text-2xl cursor-pointer">Compify</h1>
         </div>
 
-        <div className="flex flex-wrap content-center justify-start w-2/3">
-          <input
-            className="shadow appearance-none border rounded w-full h-5 my-4 pr-10 pl-2 py-2 text-gray-700 text-xs mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Search for laptops"
-          ></input>
-        </div>
+        <Search />
+
         <div className="flex w-2/3 left-0">
-          <ul className="flex  text-base space-x-6  ">
+          <ul className="flex  text-base space-x-4 ">
             <li>
               <a>
                 <span>Home</span>
@@ -47,11 +45,7 @@ const Navbar = (props) => {
               </a>
             </li>
             <li>
-              <div className="h-5 w-15 bg-light-flame-orange transition-colors duration-150 rounded-full hover:bg-flame-orange text-sm mt-1 cursor-pointer">
-                <a>
-                  <span className="p-2">login</span>
-                </a>
-              </div>
+              <Button name="login" />
             </li>
             <li>
               <svg
@@ -70,6 +64,8 @@ const Navbar = (props) => {
   );
 };
 
-Navbar.propTypes = {};
+Navbar.propTypes = {
+  getProducts: PropTypes.func.isRequired,
+};
 
 export default Navbar;
