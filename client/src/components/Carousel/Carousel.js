@@ -7,7 +7,7 @@ import CarouselContent from "./CarouselContent";
 const Carousel = (props) => {
   return (
     <div
-      className=" relative flex h-72 w-full  bg-new-blue  "
+      className=" relative flex h-72 w-screen  bg-new-blue  "
       data-bs-ride="carousel"
     >
       <Caroursel_Next_Pre />

@@ -1,0 +1,17 @@
+.nav {
+  grid-template-areas:
+    "logo options options"
+    "search search search";
+}
+
+.logo: {
+  grid-area: logo;
+}
+
+.options: {
+  grid-area: options;
+}
+
+.search: {
+  grid-area: search;
+}
