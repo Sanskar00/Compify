@@ -5,28 +5,32 @@ import { ReactComponent as Rupee } from "../../assets/logo/rupee.svg";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="mt-4 mx-2 flex-row">
-      <div className="shadow w-screen h-36 flex ">
-        <div className="w-4/12 bg-gray-100 grid place-items-center"></div>
-        <div className="w-2/3 ml-4">
-          <div className="mt-4 w-11/12">
-            <h2 className="text-sm">
-              {product.model} , {product.cpuType} {product.memorySize} RAM/
-              {product.storageSize} {product.display} Laptop
+    <div className="shadow w-screen md:w-full  h-36 flex md:grid  md:h-96 ">
+      <div className="w-4/12 md:w-full md:h-48  bg-gray-100 grid grid-row-2 place-items-center">
+        <img
+          className="md:w-52 md:h-52 "
+          key={product._id}
+          src={product.productImage[3]}
+        ></img>
+      </div>
+      <div className="w-2/3 md:w-11/12 ml-4  ">
+        <div className="mt-4 w-11/12 md:w-full">
+          <h2 className="text-sm md:text-base font-bold">
+            {product.model} , {product.cpuType} {product.memorySize} RAM/
+            {product.storageSize} {product.display} Laptop
+          </h2>
+          <div className="flex">
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+          </div>
+          <div>
+            <h2 className="text-sm items-center flex">
+              <Rupee />
+              {product.productPrice}
             </h2>
-            <div className="flex">
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-            </div>
-            <div>
-              <h2 className="text-sm items-center flex">
-                <Rupee />
-                {product.productPrice}
-              </h2>
-            </div>
           </div>
         </div>
       </div>

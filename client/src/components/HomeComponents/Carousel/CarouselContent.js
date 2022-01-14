@@ -57,8 +57,12 @@ const CarouselContent = (props) => {
               </div>
 
               {/* laptop image */}
-              <div className=" place-self-center md:ml-40 ml-20   lg:h-36 lg:w-36 h-28 w-28  lg:static  order-last lg:mt-4 md:mt-8 md:col-end-3">
-                <img src={product.productImage[0]} alt={product.model}></img>
+              <div className=" place-self-center md:ml-40 ml-20   lg:h-48 lg:w-48 h-32 w-32 md:h-36 md:w-36 lg:static  order-last lg:mt-4 md:mt-8 md:col-end-3">
+                <img
+                  className="h-full w-full"
+                  src={product.productImage[3]}
+                  alt={product.model}
+                ></img>
               </div>
             </div>
           )}
