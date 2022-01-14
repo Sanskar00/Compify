@@ -38,6 +38,12 @@ export const ProductProvider = ({ children }) => {
           topfeaturedProducts: payload,
           loading: false,
         };
+      case productActionTypes.FEATURED_PRODUCT:
+        return {
+          ...state,
+          featuredProducts: payload,
+          loading: false,
+        };
       case productActionTypes.CURRENT_SLIDE:
         return {
           ...state,
@@ -52,6 +58,7 @@ export const ProductProvider = ({ children }) => {
   const inditalState = {
     products: [],
     topfeaturedProducts: [],
+    featuredProducts: [],
     searchProducts: [],
     product: null,
     loading: true,

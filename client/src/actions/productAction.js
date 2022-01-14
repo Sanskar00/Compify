@@ -39,6 +39,25 @@ export const topFeatured = async (dispatch) => {
   }
 };
 
+export const featuredProductsAction = async (dispatch) => {
+  try {
+    const res = await axios.get("/api/product/featuredProducts");
+
+    dispatch({
+      type: productActionTypes.FEATURED_PRODUCT,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: productActionTypes.FEATURED_PRODUCT_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
 export const currentSlideCounter = async (dispatch, current) => {
   dispatch({
     type: productActionTypes.CURRENT_SLIDE,
