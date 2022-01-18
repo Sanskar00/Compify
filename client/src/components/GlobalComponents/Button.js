@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Button = ({ name }) => {
+const Button = ({ name, color, hoverColor }) => {
+  console.log(color);
   return (
     <div>
-      <button className="lg:h-5 lg:w-16 md:h-4 md:w-12 w-12 text-xs lg:text-sm font-bold  bg-light-flame-orange transition-colors duration-150 rounded-full hover:bg-flame-orange  mt-1 cursor-pointer text-white z-0">
+      <button
+        className={`lg:h-5 lg:w-16 md:h-5 md:w-12 w-16 text-base md:text-sm font-bold  ${color} transition-colors duration-150 rounded-full hover:${hoverColor}  mt-1 cursor-pointer text-white z-0"`}
+      >
         <a>
           <span className="lg:p-2 ">{name}</span>
         </a>
@@ -13,6 +16,9 @@ const Button = ({ name }) => {
   );
 };
 
-Button.propTypes = {};
+Button.defaultProps = {
+  color: "bg-light-flame-orange",
+  hoverColor: "bg-flame-orange ",
+};
 
 export default Button;

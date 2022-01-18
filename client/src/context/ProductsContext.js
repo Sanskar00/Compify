@@ -14,13 +14,24 @@ export const ProductProvider = ({ children }) => {
           loading: false,
         };
 
+      case productActionTypes.Get_Product:
+        return {
+          ...state,
+          product: payload,
+          loading: false,
+        };
+
       case productActionTypes.Search_Click:
         return {
           ...state,
           visibility: payload,
         };
       case productActionTypes.TOP_FEATURED_ERROR:
+      case productActionTypes.Get_Product_Error:
       case productActionTypes.Products_Error:
+      case productActionTypes.FEATURED_PRODUCT_ERROR:
+      case productActionTypes.LAPTOP_TYPE_PRODUCT_ERROR:
+      case productActionTypes.BRAND_TYPE_PRODUCT_ERROR:
         return {
           ...state,
           error: payload,
@@ -44,6 +55,30 @@ export const ProductProvider = ({ children }) => {
           featuredProducts: payload,
           loading: false,
         };
+      case productActionTypes.LAPTOP_TYPE_PRODUCT:
+        return {
+          ...state,
+          laptopTypeProducts: payload,
+          loading: false,
+        };
+      case productActionTypes.BRAND_TYPE_PRODUCT:
+        return {
+          ...state,
+          brandTypeProducts: payload,
+          loading: false,
+        };
+      case productActionTypes.CLEAR_PRODUCT:
+        return {
+          ...state,
+          product: null,
+        };
+      case productActionTypes.CLEAR_PRODUCTS:
+        return {
+          ...state,
+          laptopTypeProducts: [],
+          brandTypeProducts: [],
+        };
+
       case productActionTypes.CURRENT_SLIDE:
         return {
           ...state,
@@ -57,10 +92,12 @@ export const ProductProvider = ({ children }) => {
 
   const inditalState = {
     products: [],
+    product: null,
     topfeaturedProducts: [],
+    laptopTypeProducts: [],
+    brandTypeProducts: [],
     featuredProducts: [],
     searchProducts: [],
-    product: null,
     loading: true,
     visibility: "invisible",
     error: {},

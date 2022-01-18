@@ -2,13 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ReactComponent as Star } from "../../assets/logo/star.svg";
 import { ReactComponent as Rupee } from "../../assets/logo/rupee.svg";
+import { useNavigate } from "react-router";
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
   return (
-    <div className="shadow w-screen md:w-full  h-36 flex md:grid  md:h-96 ">
-      <div className="w-4/12 md:w-full md:h-48  bg-gray-100 grid grid-row-2 place-items-center">
+    <div
+      className="shadow w-screen md:w-full  h-36 flex md:grid  md:h-96 "
+      onClick={() => {
+        navigate(`/product/${product._id}`);
+      }}
+    >
+      <div className="w-4/12 md:w-full md:h-56  bg-gray-100 grid grid-row-2 place-items-center">
         <img
-          className="md:w-52 md:h-52 "
+          className="md:w-56 md:h-56 "
           key={product._id}
           src={product.productImage[3]}
         ></img>

@@ -135,10 +135,27 @@ router.get("/topFeatured", async (req, res) => {
   }
 });
 
+//@route Get api/product/:brand
+//@desc Get a top featured product
+//@access Public
+router.get("/brands/:brand", async (req, res) => {
+  try {
+    const brandProducts = await Product.find({
+      brand: req.params.brand,
+    });
+    res.json(brandProducts);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+
+    console.log(req.body);
+  }
+});
+
 //@route Get api/product/laptopType
 //@desc Get a types of laptop
 //@access Public
-router.get("/:laptopType", async (req, res) => {
+router.get("/laptopTypes/:laptopType", async (req, res) => {
   try {
     const topFeaturedProducts = await Product.find({
       laptopType: req.params.laptopType,

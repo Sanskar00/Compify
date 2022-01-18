@@ -19,9 +19,9 @@ const Search = (props) => {
   useOutsideAlerter(wrapperRef, state, dispatch); //Used for dispatching visiblity if clicking outside or inside the search box
 
   return (
-    <div className=" lg:w-10/12 md:w-11/12  md:static lg:row-start-auto w-11/12 row-start-2 col-span-full lg:col-span-1 md:mt-6 flex   md:visible  ">
+    <div className=" lg:w-10/12 md:w-11/12 grid place-items-center md:static lg:row-start-auto w-11/12  row-start-2 col-span-full lg:col-span-1 md:mt-6    md:visible  ">
       <input
-        className="shadow appearance-none border rounded w-full ml-8  md:w-full h-3 py-3  md:static lg:pl-2 lg:py-2 lg:pr-10    text-gray-700 text-xs mb-3 leading-tight focus:outline-none focus:shadow-outline"
+        className="shadow appearance-none border rounded w-11/12 ml-8  md:w-full h-3 py-3  md:static lg:pl-2 lg:py-2 lg:pr-10    text-gray-700 text-xs mb-3 leading-tight focus:outline-none focus:shadow-outline"
         placeholder="Search for laptops"
         ref={wrapperRef}
       ></input>
