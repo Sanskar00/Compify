@@ -35,7 +35,7 @@ const LatpopType = (props) => {
 
         return (
           <div
-            className="h-12 w-11/12 mx-2 my-2 lg:h-48 lg:w-48 md:h-36 md:w-36 bg-new-blue rounded-lg gap-4 grid place-items-center cursor-pointer"
+            className="h-12 w-11/12 mx-2 my-2 lg:h-48 lg:w-48 md:h-36 md:w-36 bg-new-blue rounded-xl gap-4 grid place-items-center cursor-pointer"
             onClick={() => {
               navigate(`/category/${typeId}`, {
                 state: type.onDisplay,

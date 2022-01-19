@@ -1,6 +1,7 @@
 import axios from "axios";
 import { productActionTypes } from "./types";
 
+//get all products
 export const getProducts = async (dispatch) => {
   try {
     const res = await axios.get("/api/product");
@@ -20,6 +21,7 @@ export const getProducts = async (dispatch) => {
   }
 };
 
+//get product
 export const getProduct = async (dispatch, productId, abortCont) => {
   try {
     const res = await axios.get(`/api/product/${productId}`, {
@@ -43,6 +45,7 @@ export const getProduct = async (dispatch, productId, abortCont) => {
   }
 };
 
+//get top featured products
 export const topFeatured = async (dispatch) => {
   try {
     const res = await axios.get("/api/product/topFeatured");
@@ -62,6 +65,7 @@ export const topFeatured = async (dispatch) => {
   }
 };
 
+//get fetured products
 export const featuredProductsAction = async (dispatch) => {
   try {
     const res = await axios.get("/api/product/featuredProducts");
@@ -81,6 +85,7 @@ export const featuredProductsAction = async (dispatch) => {
   }
 };
 
+//get all laptop type products(eg: gaming laptop, premium laptops and student laptops)
 export const laptopTypeProductsAction = async (dispatch, laptopType) => {
   try {
     const res = await axios.get(`/api/product/laptopTypes/${laptopType}`);
@@ -100,6 +105,7 @@ export const laptopTypeProductsAction = async (dispatch, laptopType) => {
   }
 };
 
+//get brand type products
 export const brandsProductsAction = async (dispatch, brand) => {
   try {
     const res = await axios.get(`/api/product/brands/${brand}`);
@@ -112,6 +118,26 @@ export const brandsProductsAction = async (dispatch, brand) => {
     dispatch({
       type: productActionTypes.BRAND_TYPE_PRODUCT_ERROR,
       payload: {
+        msg: error.res.statusText,
+        status: error.res.status,
+      },
+    });
+  }
+};
+
+//add review to product
+export const addReview = async (dispatch, productId, review) => {
+  try {
+    const res = await axios.put(`/api/product/review/${productId}`, review);
+
+    dispatch({
+      type: productActionTypes.ADD_REVIEW,
+      payload: res,
+    });
+  } catch (error) {
+    dispatch({
+      type: productActionTypes.REVIEW_ERROR,
+      payload: {
         msg: error.response.statusText,
         status: error.response.status,
       },
@@ -119,18 +145,21 @@ export const brandsProductsAction = async (dispatch, brand) => {
   }
 };
 
+//clear product after unmounting component
 export const clearProduct = async (dispatch) => {
   dispatch({
     type: productActionTypes.CLEAR_PRODUCT,
   });
 };
 
+//clear products after unmounting component
 export const clearProducts = async (dispatch) => {
   dispatch({
     type: productActionTypes.CLEAR_PRODUCTS,
   });
 };
 
+//add current slide counter
 export const currentSlideCounter = async (dispatch, current) => {
   dispatch({
     type: productActionTypes.CURRENT_SLIDE,

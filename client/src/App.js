@@ -10,10 +10,25 @@ import FeaturedProduct from "./components/HomeComponents/FeaturedProduct";
 import LaptopTypeProducts from "./pages/LaptopTypeProductsPages";
 import BrandsTypeLaptopPage from "./pages/BrandsTypeLaptopPage";
 import LaptopViewPage from "./pages/LaptopViewPage";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
+import { AuthContext } from "./context/AuthContext";
+import setAuthToken from "./utils/setAuthToken";
+import { useContext, useEffect } from "react";
+import { loadUser } from "./actions/authAction";
 
 // import SamplePage from "./SamplePage";
 
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
 function App() {
+  const [state, dispatch] = useContext(AuthContext);
+  useEffect(() => {
+    dispatch(loadUser(dispatch));
+  }, []);
+
   return (
     <ProductProvider>
       <Router>
@@ -22,6 +37,8 @@ function App() {
           <SearchProducts />
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signUp" element={<SignUpPage />} />
             <Route
               path="/category/:categoryName"
               element={<LaptopTypeProducts />}

@@ -4,6 +4,8 @@ export const productActionTypes = {
   Search_Click: "Search_Click",
   Get_Product: "Get_Product",
   Get_Product_Error: "Get_Product_Error",
+  ADD_REVIEW: "ADD_REVIEW",
+  REVIEW_ERROR: "REVIEW_ERROR",
   FEATURED_PRODUCT: "FEATURED_PRODUCT",
   FEATURED_PRODUCT_ERROR: "FEATURED_PRODUCT_ERROR",
   LAPTOP_TYPE_PRODUCT: "LAPTOP_TYPE_PRODUCT",
@@ -15,4 +17,20 @@ export const productActionTypes = {
   CLEAR_PRODUCT: "CLEAR_PRODUCT",
   CLEAR_PRODUCTS: "CLEAR_PRODUCTS",
   CURRENT_SLIDE: "CURRENT_SLIDE",
+};
+
+export const authActionTypes = {
+  REGISTER_SUCCESS: "REGISTER_SUCCESS",
+  REGISTER_FAIL: "REGISTER_FAIL",
+  AUTH_ERROR: "AUTH_ERROR",
+  LOGIN_SUCCESS: "LOGIN_SUCCESS",
+  LOGIN_FAIL: "LOGIN_FAIL",
+  USER_LOADED: "USER_LOADED",
+  LOGOUT: "LOGOUT",
+  ACCOUNT_DELELTED: "ACCOUNT_DELELTED",
+};
+
+export const alertActionTypes = {
+  SET_ALERT: "SET_ALERT",
+  REMOVE_ALERT: "REMOVE_ALERT",
 };

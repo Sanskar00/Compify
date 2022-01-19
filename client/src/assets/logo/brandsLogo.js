@@ -2,7 +2,7 @@ export const brands = [
   {
     logo: (
       <svg
-        className="h-12 w-12 md:h-28 md:w-28"
+        className="h-20 w-20 md:h-28 md:w-28"
         viewBox="0 0 89 89"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +18,7 @@ export const brands = [
   {
     logo: (
       <svg
-        className="h-12 w-12 md:h-28 md:w-28"
+        className="h-20 w-20 mt-2 ml-2 md:h-28 md:w-28"
         viewBox="0 0 89 89"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@ export const brands = [
   {
     logo: (
       <svg
-        className="h-12 w-12 md:h-28 md:w-28"
+        className="h-20 w-20 md:h-28 md:w-28"
         viewBox="0 0 88 88"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +88,7 @@ export const brands = [
   {
     logo: (
       <svg
-        className="h-12 w-12 md:h-28 md:w-28"
+        className="h-20 w-20 md:h-28 md:w-28"
         viewBox="0 0 132 132"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +104,7 @@ export const brands = [
   {
     logo: (
       <svg
-        className="h-12 w-12 md:h-28 md:w-28"
+        className="h-20 w-20 md:h-28 md:w-28"
         viewBox="0 0 88 92"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +120,7 @@ export const brands = [
   {
     logo: (
       <svg
-        className="h-36 w-36 md:h-72 md:w-72 md:mx-8 md:my-8"
+        className="h-56 w-56 mx-4 my-4 md:h-72 md:w-72 md:mx-8 md:my-8"
         viewBox="0 0 88 88"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

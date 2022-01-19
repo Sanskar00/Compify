@@ -85,6 +85,13 @@ export const ProductProvider = ({ children }) => {
           currentSlide: payload,
         };
 
+      case productActionTypes.ADD_REVIEW:
+        return {
+          ...state,
+          product: { ...state.post, cutomerReviews: payload },
+          loading: false,
+        };
+
       default:
         return state;
     }

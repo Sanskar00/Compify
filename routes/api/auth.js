@@ -27,10 +27,7 @@ router.post(
   "/",
 
   [
-    body("mobileNumber")
-      .not()
-      .isEmpty()
-      .withMessage("mobile number is required"),
+    body("email").not().isEmpty().withMessage("Email is required"),
     body("password").not().isEmpty().withMessage("Password is required"),
   ],
 
@@ -39,10 +36,10 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { mobileNumber, password } = req.body;
+    const { email, password } = req.body;
 
     try {
-      let user = await User.findOne({ mobileNumber });
+      let user = await User.findOne({ email });
 
       if (!user) {
         return res.status(400).json({
