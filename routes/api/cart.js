@@ -14,6 +14,8 @@ router.post("/:productId", auth, async (req, res) => {
 
     const product = await Product.findById(req.params.productId);
 
+    console.log(`add product ${req.params.productId}`);
+
     if (cart) {
       const isCart = product.isCart.find((user) => user.user == req.user.id);
 
@@ -22,10 +24,14 @@ router.post("/:productId", auth, async (req, res) => {
       if (!isCart) {
         cart.products.unshift({
           product: req.params.productId,
-          image: images[1],
-          name: product.model,
+          productImage: product.productImage,
+          model: product.model,
+          cpuType: product.cpuType,
+          memorySize: product.memorySize,
+          storageSize: product.storageSize,
+          display: product.display,
           quantity: req.body.quantity,
-          price: product.productPrice,
+          productPrice: product.productPrice,
         });
       } else {
         return res
@@ -86,7 +92,7 @@ router.delete("/delete/:productId", auth, async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user.id });
     const product = await Product.findById(req.params.productId);
-
+    console.log(`remove product${req.params.productId}`);
     const removedProduct = cart.products.filter(
       (product) => product.product != req.params.productId
     );
@@ -96,6 +102,7 @@ router.delete("/delete/:productId", auth, async (req, res) => {
     const removedUser = product.isCart.filter(
       ({ user }) => user != req.user.id
     );
+    console.log(product);
     product.isCart = removedUser;
 
     await product.save();

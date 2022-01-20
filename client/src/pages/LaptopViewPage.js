@@ -10,6 +10,7 @@ import LaptopViewSkeleton from "../components/LaptopViewComponents/LaptopViewSke
 import LaptopDetails from "../components/LaptopViewComponents/LaptopDetails";
 import LaptopHeader from "../components/LaptopViewComponents/LaptopHeader";
 import LaptopReview from "../components/LaptopViewComponents/LaptopReview";
+import { addProductCart } from "../actions/cartAction";
 const LaptopViewPage = () => {
   const [state, dispatch] = useContext(ProductContext);
 
@@ -26,6 +27,10 @@ const LaptopViewPage = () => {
 
     return () => abortCont.abort;
   }, []);
+
+  const onClickProductCart = () => {
+    addProductCart(dispatch, product._id);
+  };
 
   return (
     <div className="h-full mt-20 md:mt-36 w-screen grid  ">
@@ -54,9 +59,18 @@ const LaptopViewPage = () => {
               {product.productPrice}
             </h1>
           </div>
-          <div className="justify-self-center flex gap-1">
-            <Button name="Cart" />
-            <Button name="Buy" color="bg-new-blue" />
+          <div className="justify-self-center  gap-1 my-4">
+            <span onClick={onClickProductCart}>
+              <Button name="Cart" sw="w-72" />
+            </span>
+            <span>
+              <Button
+                name="Buy"
+                color="bg-new-blue"
+                sw="w-72"
+                hoverColor="dark-new-blue"
+              />
+            </span>
           </div>
 
           {/* details */}

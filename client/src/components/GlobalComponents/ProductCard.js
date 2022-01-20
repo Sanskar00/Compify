@@ -4,16 +4,16 @@ import { ReactComponent as Star } from "../../assets/logo/star.svg";
 import { ReactComponent as Rupee } from "../../assets/logo/rupee.svg";
 import { useNavigate } from "react-router";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, shadow }) => {
   const navigate = useNavigate();
   return (
     <div
-      className="shadow w-screen md:w-full  h-36 flex md:grid  md:h-96 "
+      className={`${shadow} w-screen md:w-full  h-36 flex md:grid  md:h-96`}
       onClick={() => {
         navigate(`/product/${product._id}`);
       }}
     >
-      <div className="w-4/12 md:w-full md:h-56  bg-gray-100 grid grid-row-2 place-items-center">
+      <div className="w-4/12 md:w-full md:h-56  grid grid-row-2 place-items-center">
         <img
           className="md:w-56 md:h-56 "
           key={product._id}
@@ -39,10 +39,17 @@ const ProductCard = ({ product }) => {
               {product.productPrice}
             </h2>
           </div>
+          {/* <div>
+            <button>{deleteButton}</button>
+          </div> */}
         </div>
       </div>
     </div>
   );
+};
+
+ProductCard.defaultProps = {
+  shadow: "shadow",
 };
 
 ProductCard.propTypes = {};

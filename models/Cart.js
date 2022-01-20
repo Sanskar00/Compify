@@ -8,19 +8,34 @@ const CartSchema = new mongoose.Schema(
           type: mongoose.Schema.Types.ObjectId,
           ref: "Product",
         },
-        image: {
+        productImage: {
+          type: [String],
+        },
+        model: {
           type: String,
           required: true,
         },
-        name: {
+        cpuType: {
+          type: String,
+          required: true,
+        },
+        memorySize: {
+          type: String,
+          required: true,
+        },
+        storageSize: {
+          type: String,
+          required: true,
+        },
+        display: {
           type: String,
           required: true,
         },
         quantity: {
-          type: String,
-          required: true,
+          type: Number,
+          default: 1,
         },
-        price: {
+        productPrice: {
           type: Number,
           required: true,
         },

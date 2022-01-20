@@ -13,9 +13,9 @@ const LaptopViewSkeleton = () => {
       <div>
         <h1 className="flex items-center mt-4  w-12 bg-gray-500 animate-pulse"></h1>
       </div>
-      <div className="justify-self-center flex gap-1">
-        <Button name="Cart" />
-        <Button name="Buy" color="bg-new-blue" />
+      <div className="justify-self-center  gap-1 my-4">
+        <Button name="Cart" sw="w-72" />
+        <Button name="Buy" color="bg-new-blue" sw="w-72" />
       </div>
 
       {/* details */}
