@@ -57,15 +57,11 @@ const CartPage = () => {
                     {product.quantity === 1 ? (
                       <div
                         className="bg-new-blue px-2 rounded-l-lg grid justify-center cursor-pointer"
-                        onClick={() =>
-                          removeProductCart(dispatch, product.product)
-                        }
+                        onClick={() => removeProductCart(dispatch, product._id)}
                       >
-                        <span className="pointer-events-none">
-                          <button className="pointer-events-none">
-                            {deleteIcon}
-                          </button>
-                        </span>
+                        <button className="pointer-events-none">
+                          {deleteIcon}
+                        </button>
                       </div>
                     ) : (
                       <div className="bg-new-blue px-2 rounded-l-lg grid justify-center">
@@ -80,7 +76,7 @@ const CartPage = () => {
                   </div>
                   <div
                     className="mx-4"
-                    onClick={() => removeProductCart(dispatch, product.product)}
+                    onClick={() => removeProductCart(dispatch, product._id)}
                   >
                     <Button name="delete" />
                   </div>

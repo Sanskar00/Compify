@@ -5,25 +5,38 @@ import { ReactComponent as Star } from "../../assets/logo/star.svg";
 const LaptopViewSkeleton = () => {
   return (
     <div className="mx-4 w-11/12 grid">
-      <div className="flex  w-full items-center justify-between ">
-        <div className="bg-gray-200 animate-pulse h-8 w-24"></div>
+      <div className="flex  w-full items-center justify-between md:grid lg:ml-64 md:ml-20 md:mb-6">
+        <div className=" bg-gray-200 animate-pulse h-8 w-24 md:w-64 md:mt-12 md:h-12"></div>
         <div className="grid place-items-center  animate-pulse bg-gray-200 h-8 w-24"></div>
       </div>
       {/* price */}
-      <div>
-        <h1 className="flex items-center mt-4  w-12 bg-gray-500 animate-pulse"></h1>
-      </div>
-      <div className="justify-self-center  gap-1 my-4">
-        <Button name="Cart" sw="w-72" />
-        <Button name="Buy" color="bg-new-blue" sw="w-72" />
+
+      <div className="grid lg:ml-64 md:ml-20">
+        <div className="w-full">
+          <h1 className="font-bold text-lg flex items-center mt-4  md:w-full  "></h1>
+        </div>
+        <div className="grid justify-center   gap-1 my-4 md:flex-none md:justify-start ">
+          {/* <span>
+            <button className="md:w-48 md:h-8 lg:w-56 lg:h-10 h-10 w- bg-light-flame-orange rounded-xl text-white ">
+              Cart
+            </button>
+          </span>
+          <span>
+            <button className="md:w-48 md:h-8 lg:w-56 lg:h-10 h-10 w-96   bg-new-blue rounded-xl text-white ">
+              Buy
+            </button>
+          </span> */}
+        </div>
       </div>
 
       {/* details */}
-      <h1 className="text-lg mt-8 font-bold  my-2">Details</h1>
-      <div className="my-2 h-36 w-56 bg-gray-200 animate-pulse"></div>
+      <div className="my-2  lg:ml-64 md:ml-20 ">
+        <h1 className="text-lg mt-8 font-bold  my-2">Details</h1>
+        <div className="my-2 h-36 w-56 lg:w-4/5 lg:h-64 bg-gray-200 animate-pulse"></div>
+      </div>
 
       {/* Adding REview */}
-      <div className="my-2 ">
+      <div className="my-2  lg:ml-64 md:ml-20 ">
         <h1 className="text-lg mt-8 font-bold  my-2">Add Review</h1>
         <div className="flex items-center border-b border-gray-200 ">
           <input

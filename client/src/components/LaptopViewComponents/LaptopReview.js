@@ -3,11 +3,11 @@ import Button from "../GlobalComponents/Button";
 
 const LaptopReview = ({ product }) => {
   return (
-    <div className="my-2 ">
+    <div className="my-2 lg:ml-64 md:ml-20">
       <h1 className="text-lg mt-8 font-bold  my-2">Add Review</h1>
       <div className="flex items-center border-b border-gray-400 ">
         <input
-          class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+          class="appearance-none bg-transparent border-none w-full  text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
           type="text"
           placeholder="Your Review"
           aria-label="Full name"

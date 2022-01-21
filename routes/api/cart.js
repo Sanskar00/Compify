@@ -14,7 +14,7 @@ router.post("/:productId", auth, async (req, res) => {
 
     const product = await Product.findById(req.params.productId);
 
-    console.log(`add product ${req.params.productId}`);
+    console.log(`add product ${product}`);
 
     if (cart) {
       const isCart = product.isCart.find((user) => user.user == req.user.id);
@@ -23,14 +23,14 @@ router.post("/:productId", auth, async (req, res) => {
 
       if (!isCart) {
         cart.products.unshift({
-          product: req.params.productId,
-          productImage: product.productImage,
+          _id: req.params.productId,
+          productImage: images,
           model: product.model,
           cpuType: product.cpuType,
           memorySize: product.memorySize,
           storageSize: product.storageSize,
           display: product.display,
-          quantity: req.body.quantity,
+          quantity: product.quantity,
           productPrice: product.productPrice,
         });
       } else {
@@ -47,11 +47,15 @@ router.post("/:productId", auth, async (req, res) => {
         user: req.user.id,
         products: [
           {
-            product: req.params.productId,
-            image: images[1],
-            name: product.model,
-            quantity: req.body.quantity,
-            price: product.productPrice,
+            _id: req.params.productId,
+            productImage: images,
+            model: product.model,
+            cpuType: product.cpuType,
+            memorySize: product.memorySize,
+            storageSize: product.storageSize,
+            display: product.display,
+            quantity: product.quantity,
+            productPrice: product.productPrice,
           },
         ],
       });
@@ -94,7 +98,7 @@ router.delete("/delete/:productId", auth, async (req, res) => {
     const product = await Product.findById(req.params.productId);
     console.log(`remove product${req.params.productId}`);
     const removedProduct = cart.products.filter(
-      (product) => product.product != req.params.productId
+      (product) => product._id != req.params.productId
     );
 
     cart.products = removedProduct;
