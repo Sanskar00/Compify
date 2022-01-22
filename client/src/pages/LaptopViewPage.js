@@ -81,14 +81,16 @@ const LaptopViewPage = () => {
                 {product.productPrice}
               </h1>
             </div>
-            <div className="grid justify-center  gap-1 my-4 md:flex-none md:justify-start ">
-              <span onClick={onClickProductCart}>
-                <button className="md:w-48 md:h-8 lg:w-56 lg:h-10 h-10 w-96 bg-light-flame-orange rounded-xl text-white ">
-                  Cart
-                </button>
-              </span>
+            <div
+              className="grid justify-center  gap-1 my-4 md:flex-none md:justify-start cursor-pointer "
+              onClick={onClickProductCart}
+            >
+              <button className="md:w-48 md:h-8 lg:w-56 lg:h-10 h-10 w-80 bg-light-flame-orange hover:bg-flame-orange rounded-xl text-white ">
+                Cart
+              </button>
+
               <span>
-                <button className="md:w-48 md:h-8 lg:w-56 lg:h-10 h-10 w-96   bg-new-blue rounded-xl text-white ">
+                <button className="md:w-48 md:h-8 lg:w-56 lg:h-10 h-10 w-80   bg-new-blue rounded-xl text-white ">
                   Buy
                 </button>
               </span>

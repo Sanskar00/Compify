@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Navigate } from "react-router";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { login } from "../actions/authAction";
 import { AuthContext } from "../context/AuthContext";
 
@@ -13,6 +13,7 @@ const LoginPage = () => {
   });
 
   const { email, password } = formData;
+  const navigate = useNavigate();
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,9 +21,14 @@ const LoginPage = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     login(dispatch, email, password);
+    if (state.isAuthenticated === true) {
+      navigate("/");
+    }
   };
 
-  const navigate = useNavigate();
+  if (state.isAuthenticated) {
+    return <Navigate replace to="/" />;
+  }
 
   return (
     <div className="mt-20 w-screen h-screen  place-items-center relative">

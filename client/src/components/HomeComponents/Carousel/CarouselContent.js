@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 
 const CarouselContent = (props) => {
   const [state, dispatch] = useContext(ProductContext);
-  const { currentSlide, topfeaturedProducts, loading } = state;
+  const { topfeaturedProducts, loading } = state;
   const navigate = useNavigate();
   const [count, setCounter] = useState(0);
 
@@ -61,12 +61,12 @@ const CarouselContent = (props) => {
       return (
         <div
           className={
-            index === currentSlide
+            index === state.currentSlide
               ? " mt-8  md:w-full md:ml-20  absolute w-full  h-52 opactity-100 overflow-hidden scroll-smooth  "
               : " opacity-0"
           }
         >
-          {index === currentSlide && (
+          {index === state.currentSlide && (
             <div className=" w-screen md:w-3/4 lg:ml-20   grid gap-8 grid-rows-2 mt-8 lg:flex lg:justify-between md:grid-col-3 md:grid-rows-1 md:gap-40">
               <div className="ml-5  lg:ml-10 lg:mt-16 lg:flex-col lg:static  lg:content-around absolute bottom-0 items-baseline grid-cols-2 gap-1 ">
                 <div className="lg:w-60 w-60 lg:text-lg  text-sm text-white font-semibold ">

@@ -82,8 +82,7 @@ const Navbar = () => {
               }}
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 lg:h-5 lg:w-5 mt-1 cursor-pointer"
+                className="h-6 w-6 lg:h-5 lg:w-5 mt-1 cursor-pointer fill-current hover:fill-black "
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
@@ -93,7 +92,12 @@ const Navbar = () => {
             {authState.isAuthenticated === true &&
             authState.loading === false &&
             authState.user !== null ? (
-              <li className="cursor-pointer">
+              <li
+                className="cursor-pointer"
+                onClick={() => {
+                  navigate(`/profile/${authState.user._id}`);
+                }}
+              >
                 <span>{authState.user.name.split(" ")[0]}</span>
               </li>
             ) : (

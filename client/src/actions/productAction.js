@@ -58,7 +58,7 @@ export const topFeatured = async (dispatch) => {
     dispatch({
       type: productActionTypes.TOP_FEATURED_ERROR,
       payload: {
-        msg: error.response.statusText,
+        msg: error.response.status,
         status: error.response.status,
       },
     });
@@ -118,8 +118,8 @@ export const brandsProductsAction = async (dispatch, brand) => {
     dispatch({
       type: productActionTypes.BRAND_TYPE_PRODUCT_ERROR,
       payload: {
-        msg: error.res.statusText,
-        status: error.res.status,
+        msg: error.response.statusText,
+        status: error.response.status,
       },
     });
   }

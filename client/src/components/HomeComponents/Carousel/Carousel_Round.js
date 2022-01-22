@@ -4,7 +4,9 @@ import { currentSlideCounter } from "../../../actions/productAction";
 
 const Carousel_Round = (props) => {
   const [state, dispatch] = useContext(ProductContext);
+
   const [current, setCurrent] = useState(0);
+
   const { topfeaturedProducts, currentSlide } = state;
 
   return (
@@ -24,7 +26,6 @@ const Carousel_Round = (props) => {
               aria-current="true"
               aria-label={`Slide ${index}`}
               value={index}
-              onClick={(e) => setCurrent(e.target.value)}
             ></button>
           );
         })}

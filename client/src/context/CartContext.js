@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from "react";
-import { getJSDocReturnType } from "typescript";
 import { cartActionTypes } from "../actions/types";
 
 export const CartContext = createContext();
@@ -24,7 +23,7 @@ export const CartProvider = ({ children }) => {
       case cartActionTypes.REMOVE_PRODUCT:
         return {
           ...state,
-          cart: state.cart.filter((product) => product.product !== payload),
+          cart: state.cart.filter((product) => product._id !== payload),
           loading: false,
         };
       case cartActionTypes.GET_CART_ERROR:

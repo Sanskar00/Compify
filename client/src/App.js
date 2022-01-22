@@ -23,6 +23,10 @@ import { useContext, useEffect } from "react";
 import { loadUser } from "./actions/authAction";
 import CartPage from "./pages/CartPage";
 import { CartProvider } from "./context/CartContext";
+import ProfilePage from "./pages/ProfilePage";
+import Address from "./pages/Address";
+import AddAddress from "./pages/AddAddress";
+import { PersonalInfoProvider } from "./context/PersonalContext";
 
 // import SamplePage from "./SamplePage";
 
@@ -40,35 +44,46 @@ function App() {
 
   return (
     <ProductProvider>
-      <CartProvider>
-        <Router>
-          <div className="App  ">
-            <Navbar />
-            <SearchProducts />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signUp" element={<SignUpPage />} />
-              <Route
-                path="/category/:categoryName"
-                element={<LaptopTypeProducts />}
-              />
-              <Route path="/brand/:brand" element={<BrandsTypeLaptopPage />} />
-              <Route path="/product/:productId" element={<LaptopViewPage />} />
-              <Route
-                path="/cart"
-                element={
-                  state.isAuthenticated === true ? (
-                    <CartPage />
-                  ) : (
-                    <Navigate to="/login" />
-                  )
-                }
-              />
-            </Routes>
-          </div>
-        </Router>
-      </CartProvider>
+      <PersonalInfoProvider>
+        <CartProvider>
+          <Router>
+            <div className="App ">
+              <Navbar />
+              <SearchProducts />
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signUp" element={<SignUpPage />} />
+                <Route
+                  path="/category/:categoryName"
+                  element={<LaptopTypeProducts />}
+                />
+                <Route
+                  path="/brand/:brand"
+                  element={<BrandsTypeLaptopPage />}
+                />
+                <Route
+                  path="/product/:productId"
+                  element={<LaptopViewPage />}
+                />
+                <Route path="/profile/:profileId" element={<ProfilePage />} />
+                <Route path="/address" element={<Address />} />
+                <Route path="/address/addAddress" element={<AddAddress />} />
+                <Route
+                  path="/cart"
+                  element={
+                    state.isAuthenticated === true ? (
+                      <CartPage />
+                    ) : (
+                      <Navigate to="/login" />
+                    )
+                  }
+                />
+              </Routes>
+            </div>
+          </Router>
+        </CartProvider>
+      </PersonalInfoProvider>
     </ProductProvider>
   );
 }

@@ -47,6 +47,7 @@ export const register = async (dispatch, formData) => {
   }
 };
 
+//login user
 export const login = async (dispatch, email, password) => {
   const config = {
     heders: {
@@ -75,4 +76,14 @@ export const login = async (dispatch, email, password) => {
       type: authActionTypes.LOGIN_FAIL,
     });
   }
+};
+
+//logout user /clear profule
+export const logout = (dispatch) => {
+  dispatch({
+    type: authActionTypes.LOGOUT,
+  });
+  // dispatch({
+  //   type: profileActionTypes.CLEAR_PROFILE,
+  // });
 };
