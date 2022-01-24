@@ -27,6 +27,7 @@ import ProfilePage from "./pages/ProfilePage";
 import Address from "./pages/Address";
 import AddAddress from "./pages/AddAddress";
 import { PersonalInfoProvider } from "./context/PersonalContext";
+import CardPage from "./pages/CardPage";
 
 // import SamplePage from "./SamplePage";
 
@@ -68,6 +69,7 @@ function App() {
                 />
                 <Route path="/profile/:profileId" element={<ProfilePage />} />
                 <Route path="/address" element={<Address />} />
+                <Route path="/card" element={<CardPage />} />
                 <Route path="/address/addAddress" element={<AddAddress />} />
                 <Route
                   path="/cart"

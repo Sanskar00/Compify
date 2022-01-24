@@ -59,8 +59,14 @@ const ProfilePage = () => {
           <h1>My Cart </h1>
           {rightArrow}
         </div>
-        <div className="shadow flex justify-between cursor-pointer place-items-center text-gray-500">
+        <div
+          className="shadow flex justify-between cursor-pointer place-items-center text-gray-500"
+          onClick={() => {
+            navigate("/card");
+          }}
+        >
           <h1>My Cards</h1>
+
           {rightArrow}
         </div>
         <div

@@ -5,7 +5,7 @@ const auth = require("../../middleware/auth");
 const User = require("../../models/Users");
 const PersonalInfo = require("../../models/Personal");
 const stripe = require("stripe")(
-  "sk_test_51K0RvbSHqep0AJHb2OtPSGvXHWMWjJWaz3TaYVmvmtc7Q36ZJA794yQFWfAUkWbCsiKPyst5ibIhOKxCM8p4VUFq008CEnTj8T"
+  "sk_test_51K0RvbSHqep0AJHbmysnTuSNsLp7ohhGS6thayodJOkEVjdxXSft0d8f7ZfBaeSDQXx5wvZZbIs8UZklFWJhBfTU00dylibS8m"
 );
 const bcypt = require("bcryptjs");
 
@@ -183,8 +183,7 @@ router.post("/v1/checkout/sessions", auth, async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       mode: "setup",
       payment_method_types: ["card"],
-      success_url:
-        "https://localhost:3000/sucess?sessionId={CHECKOUT_SESSION_ID}",
+      success_url: "https://localhost:3000/card",
       cancel_url: "https://localhost:3000/",
       customer: customer.id,
     });

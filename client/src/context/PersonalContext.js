@@ -22,8 +22,34 @@ export const PersonalInfoProvider = ({ children }) => {
       case personalActionTypes.REMOVE_ADDRESS:
         return {
           ...state,
-          cart: state.cart.filter((product) => product._id !== payload),
+          addresses: state.addresses.filter(
+            (address) => address._id !== payload
+          ),
           loading: false,
+        };
+      case personalActionTypes.GET_CARDS:
+        return {
+          ...state,
+          cards: payload,
+          loading: false,
+          cardLoading: false,
+        };
+      case personalActionTypes.ADD_CARD:
+        console.log(payload);
+        return {
+          ...state,
+          session: payload,
+          loading: false,
+          cardLoading: false,
+        };
+      case personalActionTypes.GET_CARDS_ERROR:
+      case personalActionTypes.ADD_CARD_ERROR:
+        return {
+          ...state,
+          session: null,
+          cards: [],
+          loading: true,
+          cardLoading: false,
         };
 
       default:
@@ -34,6 +60,9 @@ export const PersonalInfoProvider = ({ children }) => {
   const initialState = {
     addresses: [],
     cards: [],
+    loading: true,
+    cardLoading: true,
+    session: null,
   };
 
   const [state, dispatch] = useReducer(personalInfoReducer, initialState);

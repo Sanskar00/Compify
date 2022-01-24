@@ -5,7 +5,6 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const authReducer = (state, action) => {
-    console.log(action);
     const { type, payload } = action;
     switch (type) {
       case authActionTypes.USER_LOADED:

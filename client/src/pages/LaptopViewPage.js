@@ -48,7 +48,7 @@ const LaptopViewPage = () => {
               className="w-full h-full  "
               src={product.productImage[imageIndex]}
             ></img>
-            <div className="invisible lg:w-1/2 md:w-2/3  md:h-20 md:visible   md:grid md:grid-cols-3 md:gap-2   ">
+            <div className=" h-12 w-2/3 flex justify-around gap-4  lg:w-1/2 md:w-2/3  md:h-20 md:visible   md:grid md:grid-cols-3 md:gap-2   ">
               {product.productImage
                 .slice(0, product.productImage.length - 1)
                 .map((image, index) => {

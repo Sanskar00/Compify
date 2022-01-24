@@ -8,7 +8,9 @@ module.exports = {
         "dark-new-blue": "#1F293A",
         "flame-orange": "#FF4D00",
         "light-flame-orange": "#FF6F00",
-
+        "teal-100": "#00cdcd",
+        "teal-200": "#00b3b3",
+        "teal-500": "#006767",
         slate: "rgb(248 250 252)",
         "slate-900": "rgb(15 23 42)",
       },

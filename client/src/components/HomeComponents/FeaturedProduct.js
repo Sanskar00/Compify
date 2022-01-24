@@ -8,7 +8,6 @@ const FeaturedProduct = (props) => {
   const [state, dispatch] = useContext(ProductContext);
 
   const { loading, featuredProducts } = state;
-  console.log(state);
 
   useEffect(() => {
     featuredProductsAction(dispatch);
