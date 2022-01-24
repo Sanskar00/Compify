@@ -42,6 +42,12 @@ export const PersonalInfoProvider = ({ children }) => {
           loading: false,
           cardLoading: false,
         };
+      case personalActionTypes.DELETE_CARDS:
+        return {
+          ...state,
+          cards: state.cards.filter((card) => card.id !== payload),
+          cardLoading: false,
+        };
       case personalActionTypes.GET_CARDS_ERROR:
       case personalActionTypes.ADD_CARD_ERROR:
         return {

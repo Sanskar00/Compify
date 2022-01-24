@@ -96,3 +96,24 @@ export const getCards = async (dispatch) => {
     });
   }
 };
+
+export const deleteCards = async (dispatch, cardId) => {
+  try {
+    const res = await axios.delete(
+      `api/personalInfo/v1/customers/cards/delete/${cardId}`
+    );
+    dispatch({
+      type: personalActionTypes.DELETE_CARDS,
+      payload: cardId,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: personalActionTypes.GET_CARDS_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
