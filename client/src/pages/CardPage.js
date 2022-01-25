@@ -30,7 +30,8 @@ const CardPage = () => {
   console.log(state);
 
   const handleClick = () => {
-    addCard(dispatch);
+    const url = document.URL;
+    addCard(dispatch, url);
   };
 
   const handleDelete = (id) => {

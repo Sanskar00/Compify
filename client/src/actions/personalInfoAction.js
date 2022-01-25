@@ -59,9 +59,11 @@ export const deleteAddress = async (dispatch, addressId) => {
   }
 };
 
-export const addCard = async (dispatch) => {
+export const addCard = async (dispatch, url) => {
   try {
-    const res = await axios.post("api/personalInfo/v1/checkout/sessions");
+    const res = await axios.post("api/personalInfo/v1/checkout/sessions", {
+      url,
+    });
     dispatch({
       type: personalActionTypes.ADD_CARD,
       payload: res.data,

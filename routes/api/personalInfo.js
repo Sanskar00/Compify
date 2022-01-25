@@ -157,6 +157,7 @@ router.delete("/address/delete/:addressId", auth, async (req, res) => {
 router.post("/v1/checkout/sessions", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
+    console.log(req.body.url);
 
     const customers = await stripe.customers.list();
 
@@ -183,8 +184,8 @@ router.post("/v1/checkout/sessions", auth, async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       mode: "setup",
       payment_method_types: ["card"],
-      success_url: "https://localhost:3000/card",
-      cancel_url: "https://localhost:3000/",
+      success_url: req.body.url,
+      cancel_url: req.body.url,
       customer: customer.id,
     });
 
@@ -204,6 +205,7 @@ router.post("/v1/checkout/sessions", auth, async (req, res) => {
 //@access Protected
 router.get("/v1/customers/cards", auth, async (req, res) => {
   try {
+    console.log();
     const user = await User.findById(req.user.id).select("-password");
 
     const customers = await stripe.customers.list();
@@ -233,7 +235,7 @@ router.get("/v1/customers/cards", auth, async (req, res) => {
 //@route delete /v1/customers/cards/delete/:cardId
 //@desc delete a card
 //@access Protected
-router.delete("/v1/customers/cards/delete/:cardId", auth, async (req, res) => {
+router.delete("/v1/customers/cards/delete/:cardId/", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
 
