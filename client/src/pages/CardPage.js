@@ -3,7 +3,6 @@ import { Navigate, useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
 import { addCard, deleteCards, getCards } from "../actions/personalInfoAction";
 import { PersonalInfoContext } from "../context/PersonalContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CardPage = () => {
   const [state, dispatch] = useContext(PersonalInfoContext);
@@ -41,25 +40,26 @@ const CardPage = () => {
   if (!state.cardLoading && state.session !== null) {
     window.location.href = `${state.session.session_url}`;
   }
+
   return (
-    <div className="mt-20 md:mt-36 grid">
+    <div className="mt-20  grid md:mt-0 md:px-6 md:py-6">
       <div
         className="h-12 w-screen text-base text-new-blue shadow flex border 
-       px-8 font-bold cursor-pointer items-center "
+       px-8 font-bold cursor-pointer items-center  md:w-full "
         onClick={handleClick}
       >
         {plus} <h1>Add a card</h1>
       </div>
-      <div className="w-screen grid place-items-center mt-8 gap-4 ">
+      <div className="w-screen grid place-items-center mt-8 gap-4 md:w-full  md:px-24 md:grid-cols-1 lg:grid-cols-3 ">
         {state.cardLoading ? (
-          "loading"
+          <h1 className=" lg:col-start-2">loading</h1>
         ) : state.cards.length === 0 ? (
-          <h1>No card added</h1>
+          <h1 className="lg:col-start-2">No card added</h1>
         ) : (
           state.cards.map((card) => {
             console.log(card.id);
             return (
-              <div className="h-36 w-2/3   shadow rounded bg-gradient-to-b from-teal-100 via-teal-200 to-teal-500 grid px-8 relative text-white">
+              <div className="h-36 w-2/3   shadow rounded bg-gradient-to-b from-teal-100 via-teal-200 to-teal-500 grid px-8 relative text-white md:w-60">
                 <h1 className="self-center absolute  font-bold left-8">
                   xxxx xxxx xxxx {card.card.last4}
                 </h1>

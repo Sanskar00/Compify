@@ -32,10 +32,10 @@ const Address = () => {
   );
   const navigate = useNavigate();
   return (
-    <div className="mt-20 md:mt-36 grid">
+    <div className="mt-20 grid md:mt-0 md:px-6 md:py-6">
       <div
         className="h-12 w-screen text-base text-new-blue shadow flex border 
-       px-8 font-bold cursor-pointer items-center "
+       px-8 font-bold cursor-pointer items-center md:w-full "
         onClick={() => navigate("/address/addAddress")}
       >
         {plus} <h1>Add a new address</h1>

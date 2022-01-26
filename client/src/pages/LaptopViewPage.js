@@ -48,7 +48,7 @@ const LaptopViewPage = () => {
               className="w-full h-full  "
               src={product.productImage[imageIndex]}
             ></img>
-            <div className="  invisible  lg:w-1/2 md:w-2/3  md:h-20 md:visible   md:grid md:grid-cols-3 md:gap-2 md:mb-0   ">
+            <div className="  hidden  lg:w-1/2 md:w-2/3  md:h-20 md:visible   md:grid md:grid-cols-3 md:gap-2 md:mb-0   ">
               {product.productImage
                 .slice(0, product.productImage.length - 1)
                 .map((image, index) => {
@@ -81,11 +81,11 @@ const LaptopViewPage = () => {
                 {product.productPrice}
               </h1>
             </div>
-            <div
-              className="grid justify-center  gap-1 my-4 md:flex-none md:justify-start cursor-pointer "
-              onClick={onClickProductCart}
-            >
-              <button className="md:w-48 md:h-8 lg:w-56 lg:h-10 h-10 w-80 bg-light-flame-orange hover:bg-flame-orange rounded-xl text-white ">
+            <div className="grid justify-center  gap-1 my-4 md:flex-none md:justify-start cursor-pointer ">
+              <button
+                className="md:w-48 md:h-8 lg:w-56 lg:h-10 h-10 w-80 bg-light-flame-orange hover:bg-flame-orange rounded-xl text-white "
+                onClick={onClickProductCart}
+              >
                 Cart
               </button>
 

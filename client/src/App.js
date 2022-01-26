@@ -67,9 +67,13 @@ function App() {
                   path="/product/:productId"
                   element={<LaptopViewPage />}
                 />
-                <Route path="/profile/:profileId" element={<ProfilePage />} />
+                <Route path="/profile" element={<ProfilePage />}>
+                  <Route path="address" element={<Address />} />
+                  <Route path="card" element={<CardPage />} />
+                </Route>
                 <Route path="/address" element={<Address />} />
                 <Route path="/card" element={<CardPage />} />
+
                 <Route path="/address/addAddress" element={<AddAddress />} />
                 <Route
                   path="/cart"

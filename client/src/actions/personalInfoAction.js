@@ -61,7 +61,7 @@ export const deleteAddress = async (dispatch, addressId) => {
 
 export const addCard = async (dispatch, url) => {
   try {
-    const res = await axios.post("api/personalInfo/v1/checkout/sessions", {
+    const res = await axios.post("/api/personalInfo/v1/checkout/sessions", {
       url,
     });
     dispatch({
@@ -82,7 +82,7 @@ export const addCard = async (dispatch, url) => {
 
 export const getCards = async (dispatch) => {
   try {
-    const res = await axios.get("api/personalInfo/v1/customers/cards");
+    const res = await axios.get("/api/personalInfo/v1/customers/cards");
     dispatch({
       type: personalActionTypes.GET_CARDS,
       payload: res.data,
@@ -102,7 +102,7 @@ export const getCards = async (dispatch) => {
 export const deleteCards = async (dispatch, cardId) => {
   try {
     const res = await axios.delete(
-      `api/personalInfo/v1/customers/cards/delete/${cardId}`
+      `/api/personalInfo/v1/customers/cards/delete/${cardId}`
     );
     dispatch({
       type: personalActionTypes.DELETE_CARDS,

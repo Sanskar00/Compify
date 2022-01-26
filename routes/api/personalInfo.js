@@ -163,7 +163,6 @@ router.post("/v1/checkout/sessions", auth, async (req, res) => {
 
     const customerData = customers.data;
     const isID = customerData.find((data) => data.id === user.customerIdStripe);
-
     let customer = "";
 
     // checking customer stripe id
