@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../GlobalComponents/Button";
 import { ReactComponent as Star } from "../../assets/logo/star.svg";
 
 const LaptopHeader = ({ product }) => {

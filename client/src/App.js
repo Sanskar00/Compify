@@ -28,6 +28,10 @@ import Address from "./pages/Address";
 import AddAddress from "./pages/AddAddress";
 import { PersonalInfoProvider } from "./context/PersonalContext";
 import CardPage from "./pages/CardPage";
+import OrderPage from "./pages/OrderPage";
+import { OrderProvider } from "./context/OrderContext";
+import BuyPage from "./pages/GetAddress";
+import GetAddress from "./pages/GetAddress";
 
 // import SamplePage from "./SamplePage";
 
@@ -46,49 +50,53 @@ function App() {
   return (
     <ProductProvider>
       <PersonalInfoProvider>
-        <CartProvider>
-          <Router>
-            <div className="App ">
-              <Navbar />
-              <SearchProducts />
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/signUp" element={<SignUpPage />} />
-                <Route
-                  path="/category/:categoryName"
-                  element={<LaptopTypeProducts />}
-                />
-                <Route
-                  path="/brand/:brand"
-                  element={<BrandsTypeLaptopPage />}
-                />
-                <Route
-                  path="/product/:productId"
-                  element={<LaptopViewPage />}
-                />
-                <Route path="/profile" element={<ProfilePage />}>
-                  <Route path="address" element={<Address />} />
-                  <Route path="card" element={<CardPage />} />
-                </Route>
-                <Route path="/address" element={<Address />} />
-                <Route path="/card" element={<CardPage />} />
+        <OrderProvider>
+          <CartProvider>
+            <Router>
+              <div className="App ">
+                <Navbar />
+                <SearchProducts />
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/signUp" element={<SignUpPage />} />
+                  <Route
+                    path="/category/:categoryName"
+                    element={<LaptopTypeProducts />}
+                  />
+                  <Route
+                    path="/brand/:brand"
+                    element={<BrandsTypeLaptopPage />}
+                  />
+                  <Route
+                    path="/product/:productId"
+                    element={<LaptopViewPage />}
+                  />
+                  <Route path="/profile" element={<ProfilePage />}>
+                    <Route path="address" element={<Address />} />
+                    <Route path="card" element={<CardPage />} />
+                    <Route path="order" element={<OrderPage />} />
+                  </Route>
+                  <Route path="/address" element={<Address />} />
+                  <Route path="/card" element={<CardPage />} />
 
-                <Route path="/address/addAddress" element={<AddAddress />} />
-                <Route
-                  path="/cart"
-                  element={
-                    state.isAuthenticated === true ? (
-                      <CartPage />
-                    ) : (
-                      <Navigate to="/login" />
-                    )
-                  }
-                />
-              </Routes>
-            </div>
-          </Router>
-        </CartProvider>
+                  <Route path="/address/addAddress" element={<AddAddress />} />
+                  <Route path="/buyProduct" element={<GetAddress />} />
+                  <Route
+                    path="/cart"
+                    element={
+                      state.isAuthenticated === true ? (
+                        <CartPage />
+                      ) : (
+                        <Navigate to="/login" />
+                      )
+                    }
+                  />
+                </Routes>
+              </div>
+            </Router>
+          </CartProvider>
+        </OrderProvider>
       </PersonalInfoProvider>
     </ProductProvider>
   );

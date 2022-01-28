@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "../GlobalComponents/Button";
-import { ReactComponent as Star } from "../../assets/logo/star.svg";
 
 const LaptopViewSkeleton = () => {
   return (
@@ -16,16 +15,7 @@ const LaptopViewSkeleton = () => {
           <h1 className="font-bold text-lg flex items-center mt-4  md:w-full  "></h1>
         </div>
         <div className="grid justify-center   gap-1 my-4 md:flex-none md:justify-start ">
-          {/* <span>
-            <button className="md:w-48 md:h-8 lg:w-56 lg:h-10 h-10 w- bg-light-flame-orange rounded-xl text-white ">
-              Cart
-            </button>
-          </span>
-          <span>
-            <button className="md:w-48 md:h-8 lg:w-56 lg:h-10 h-10 w-96   bg-new-blue rounded-xl text-white ">
-              Buy
-            </button>
-          </span> */}
+          <h1 className="font-bold text-lg flex items-center mt-4  md:w-full  "></h1>
         </div>
       </div>
 

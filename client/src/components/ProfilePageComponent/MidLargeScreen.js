@@ -37,8 +37,8 @@ const MidLargeScreen = () => {
             ></path>
           </svg>
           <section>
-            <h1 className="text-base   text-white "> Sanskar Saxena</h1>
-            <h2 className="text-xs text-gray-300">saxenasansu@gmail.xom</h2>
+            <h1 className="text-base   text-white "> {authState.user.name}</h1>
+            <h2 className="text-xs text-gray-300">{authState.user.email}</h2>
           </section>
         </div>
         <div className=" shadow border   h-full grid grid-rows-5 gap-2  px-4  ">
@@ -49,7 +49,7 @@ const MidLargeScreen = () => {
           <div
             className=" flex justify-between cursor-pointer  place-items-center text-gray-500"
             onClick={() => {
-              navigate("/profile/orders");
+              navigate("/profile/order");
             }}
           >
             <h1>My Orders</h1>

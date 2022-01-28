@@ -1,36 +1,41 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { getProduct } from "../actions/productAction";
-import Caroursel_Next_Pre from "../components/HomeComponents/Carousel/Carousel_Next_Pre";
 import { ProductContext } from "../context/ProductsContext";
-import { ReactComponent as Star } from "../assets/logo/star.svg";
 import { ReactComponent as Rupee } from "../assets/logo/rupee.svg";
-import Button from "../components/GlobalComponents/Button";
 import LaptopViewSkeleton from "../components/LaptopViewComponents/LaptopViewSkeleton";
 import LaptopDetails from "../components/LaptopViewComponents/LaptopDetails";
 import LaptopHeader from "../components/LaptopViewComponents/LaptopHeader";
 import LaptopReview from "../components/LaptopViewComponents/LaptopReview";
 import { addProductCart } from "../actions/cartAction";
+import { orderedProduct, orderProduct } from "../actions/orderAction";
+import { OrderContext } from "../context/OrderContext";
+
 const LaptopViewPage = () => {
   const [state, dispatch] = useContext(ProductContext);
+  const [orderState, orderdispatch] = useContext(OrderContext);
   const [imageIndex, setImageIndex] = useState(0);
+  const navigate = useNavigate();
 
   const { productId } = useParams();
 
   const { product } = state;
   const { loading } = state;
 
-  console.log(product);
-
   useEffect(() => {
     const abortCont = new AbortController();
     getProduct(dispatch, productId, abortCont);
 
     return () => abortCont.abort;
-  }, []);
+  }, [getProduct]);
 
-  const onClickProductCart = () => {
+  const handleProductCart = () => {
     addProductCart(dispatch, product._id);
+  };
+
+  const handleOrderedProduct = (product) => {
+    orderedProduct(dispatch, product._id);
   };
 
   const indexImage = (i) => {
@@ -47,6 +52,7 @@ const LaptopViewPage = () => {
             <img
               className="w-full h-full  "
               src={product.productImage[imageIndex]}
+              alt={product.productImage[imageIndex]}
             ></img>
             <div className="  hidden  lg:w-1/2 md:w-2/3  md:h-20 md:visible   md:grid md:grid-cols-3 md:gap-2 md:mb-0   ">
               {product.productImage
@@ -84,13 +90,18 @@ const LaptopViewPage = () => {
             <div className="grid justify-center  gap-1 my-4 md:flex-none md:justify-start cursor-pointer ">
               <button
                 className="md:w-48 md:h-8 lg:w-56 lg:h-10 h-10 w-80 bg-light-flame-orange hover:bg-flame-orange rounded-xl text-white "
-                onClick={onClickProductCart}
+                onClick={handleProductCart}
               >
                 Cart
               </button>
 
               <span>
-                <button className="md:w-48 md:h-8 lg:w-56 lg:h-10 h-10 w-80   bg-new-blue rounded-xl text-white ">
+                <button
+                  className="md:w-48 md:h-8 lg:w-56 lg:h-10 h-10 w-80   bg-new-blue rounded-xl text-white "
+                  onClick={() => {
+                    handleOrderedProduct(product);
+                  }}
+                >
                   Buy
                 </button>
               </span>

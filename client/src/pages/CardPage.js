@@ -50,7 +50,7 @@ const CardPage = () => {
       >
         {plus} <h1>Add a card</h1>
       </div>
-      <div className="w-screen grid place-items-center mt-8 gap-4 md:w-full  md:px-24 md:grid-cols-1 lg:grid-cols-3 ">
+      <div className="w-screen grid place-items-center mt-8 gap-4 md:w-full   md:grid-cols-1 lg:grid-cols-3 ">
         {state.cardLoading ? (
           <h1 className=" lg:col-start-2">loading</h1>
         ) : state.cards.length === 0 ? (
