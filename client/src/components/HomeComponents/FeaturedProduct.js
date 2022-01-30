@@ -21,7 +21,9 @@ const FeaturedProduct = (props) => {
       </h1>
       <div className="mt-4 mx-2 md:mx-32 lg:mx-60  md:w-2/3  grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {featuredProducts.map((product) => {
-          return <ProductCard key={product.id} product={product} />;
+          return (
+            <ProductCard key={product.id} product={product} key={product._id} />
+          );
         })}
       </div>
     </div>

@@ -26,6 +26,7 @@ const Carousel_Round = (props) => {
               aria-current="true"
               aria-label={`Slide ${index}`}
               value={index}
+              key={index}
             ></button>
           );
         })}

@@ -14,7 +14,7 @@ const Navbar = () => {
   const [authState, dispatch] = useContext(AuthContext);
 
   return (
-    <div className="fixed z-10 top-0 left-0 w-full ">
+    <div className="fixed  top-0 left-0 w-full z-50 ">
       <div className="grid grid-cols-3 md:grid-rows-2 lg:grid-rows-1 h-20 md:h-24  bg-new-blue text-white font-bold md:place-items-center   ">
         <div className="lg:w-1/6 flex items-center justify-center ">
           <svg
@@ -25,9 +25,9 @@ const Navbar = () => {
             stroke="currentColor"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
@@ -43,19 +43,15 @@ const Navbar = () => {
           <ul className="flex  text-basic lg:space-x-4 space-x-2  ">
             <div className="bg-dark-new-blue absolute invisible md:visible top-10  md:text-sm lg:text-base md:flex items-center   md:space-x-4 md:static md:bg-transparent left-0">
               <li>
-                <a>
-                  <Link to="/" element={<HomePage />}>
-                    <span>Home</span>
-                  </Link>
-                </a>
+                <Link to="/" element={<HomePage />}>
+                  <span>Home</span>
+                </Link>
               </li>
               <li>
-                <a>
-                  <span>About</span>
-                </a>
+                <span>About</span>
               </li>
               <li>
-                <a className="flex">
+                <section className="flex">
                   <span>Categories</span>
                   <span>
                     <svg
@@ -65,13 +61,13 @@ const Navbar = () => {
                       fill="white"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
                   </span>
-                </a>
+                </section>
               </li>
             </div>
 
@@ -114,10 +110,6 @@ const Navbar = () => {
       </div>
     </div>
   );
-};
-
-Navbar.propTypes = {
-  getProducts: PropTypes.func.isRequired,
 };
 
 export default Navbar;

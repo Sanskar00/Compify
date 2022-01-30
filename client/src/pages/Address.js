@@ -7,13 +7,10 @@ import AddressComponent from "../components/GlobalComponents/Address";
 const Address = () => {
   const [state, dispatch] = useContext(PersonalInfoContext);
   const { addresses, loading } = state;
-  useEffect(() => {
-    getAddresses(dispatch);
-  }, [getAddresses]);
 
-  const deleteHandle = (id) => {
-    deleteAddress(dispatch, id);
-  };
+  useEffect(() => {
+    return getAddresses(dispatch);
+  }, [state.addresses]);
 
   const plus = (
     <svg
@@ -36,7 +33,11 @@ const Address = () => {
       <div
         className="h-12 w-screen text-base text-new-blue shadow flex border 
        px-8 font-bold cursor-pointer items-center md:w-full "
-        onClick={() => navigate("/address/addAddress")}
+        onClick={() => {
+          navigate("/address/addAddress", {
+            state: window.location.pathname,
+          });
+        }}
       >
         {plus} <h1>Add a new address</h1>
       </div>

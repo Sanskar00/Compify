@@ -1,14 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PersonalInfoContext } from "../../context/PersonalContext";
-import { deleteAddress } from "../../actions/personalInfoAction";
+import {
+  deleteAddress,
+  getAddress,
+  getAddresses,
+} from "../../actions/personalInfoAction";
 
-const AddressComponent = ({ address, hidden }) => {
+const AddressComponent = ({ hidden, address }) => {
   const [state, dispatch] = useContext(PersonalInfoContext);
+
   const deleteHandle = (id) => {
     deleteAddress(dispatch, id);
   };
+
   return (
-    <div className="shadow border px-8 py-2 grid gap-2 relative">
+    <div
+      className="shadow border px-8 py-2 grid gap-2 relative"
+      key={address._id}
+    >
       <section className="flex gap-2 items-center">
         <h1 className="text-lg">{address.name}</h1>
         <h3 className="text-xs bg-gray-200 text-gray-500 rounded ">
@@ -38,9 +47,9 @@ const AddressComponent = ({ address, hidden }) => {
         }}
       >
         <path
-          fill-rule="evenodd"
+          fillRule="evenodd"
           d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-          clip-rule="evenodd"
+          clipRule="evenodd"
         ></path>
       </svg>
     </div>

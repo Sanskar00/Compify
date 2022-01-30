@@ -123,7 +123,7 @@ router.get("/address", auth, async (req, res) => {
   }
 });
 
-//@route put api/personalInfo/address/delelte
+//@route delete api/personalInfo/address/delelte
 //@desc delelte adress
 //@access Protected
 router.delete("/address/delete/:addressId", auth, async (req, res) => {

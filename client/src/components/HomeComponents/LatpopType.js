@@ -41,11 +41,11 @@ const LatpopType = (props) => {
                 state: type.onDisplay,
               });
             }}
+            key={type.laptopType}
           >
             <div
               className="h-12 w-11/12 opacity-0 i hover:opacity-100 hover:bg-opacity-25 hover:text-opacity-100 focus:text-opacity-100 duration-150 absolute bg-white lg:h-48 lg:w-48 md:h-36 md:w-36 rounded-md grid place-items-center font-bold text-light-flame-orange text-lg  "
               value="Gaming_Laptop"
-              key={type.LatpopType}
             >
               {type.onDisplay}
             </div>

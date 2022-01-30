@@ -11,6 +11,8 @@ const CartPage = () => {
   const [authState, authDispatch] = useContext(AuthContext);
   const { plus, deleteIcon, minus } = cartIcon;
 
+  console.log(cartState);
+
   const { cart, loading } = cartState;
 
   useEffect(() => {

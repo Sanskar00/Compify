@@ -47,9 +47,9 @@ const Caroursel_Next_Pre = (props) => {
             fill="white"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             />
           </svg>
         </span>
@@ -57,14 +57,14 @@ const Caroursel_Next_Pre = (props) => {
 
       {/* NextButton */}
       <button
-        class="right-12 carousel-control-next absolute z-1 h-10 top-1/2 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline lg:right-24"
+        className="right-12 carousel-control-next absolute z-1 h-10 top-1/2 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline lg:right-24"
         type="button"
         data-bs-target="#carouselExampleCaptions"
         data-bs-slide="next"
         onClick={nextSlide}
       >
         <span
-          class="carousel-control-next-icon inline-block bg-no-repeat"
+          className="carousel-control-next-icon inline-block bg-no-repeat"
           aria-hidden="true"
         >
           <svg
@@ -74,9 +74,9 @@ const Caroursel_Next_Pre = (props) => {
             fill="white"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             />
           </svg>
         </span>

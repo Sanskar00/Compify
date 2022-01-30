@@ -8,7 +8,6 @@ export const OrderProvider = ({ children }) => {
     const { type, payload } = action;
     switch (type) {
       case orderActionTypes.GET_PRODUCT:
-        console.log(payload);
         return {
           ...state,
           product: payload,

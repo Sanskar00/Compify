@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Navigate, useLocation, useNavigate, NavLink } from "react-router-dom";
 import { addAddress } from "../actions/personalInfoAction";
 import { PersonalInfoContext } from "../context/PersonalContext";
 
@@ -15,14 +16,18 @@ const AddAddress = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const [state, dispatch] = useContext(PersonalInfoContext);
+  const [{}, dispatch] = useContext(PersonalInfoContext);
+
+  const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
     addAddress(dispatch, formData);
+
+    navigate(`${location.state}`, { state: window.location.pathname });
   };
 
-  console.log(formData);
+  const location = useLocation();
   return (
     <div className="mt-24 md:mt-36 grid justify-items-stretch ">
       <h1 className="mx-4"> Add address</h1>

@@ -13,6 +13,17 @@ export const PersonalInfoProvider = ({ children }) => {
           addresses: payload,
           loading: false,
         };
+      case personalActionTypes.GET_ADDRESSES_LOADING:
+        return {
+          ...state,
+          loading: true,
+        };
+      case personalActionTypes.GET_ADDRESS:
+        return {
+          ...state,
+          address: payload,
+          loading: false,
+        };
       case personalActionTypes.ADD_ADDRESS:
         return {
           ...state,
@@ -57,6 +68,11 @@ export const PersonalInfoProvider = ({ children }) => {
           loading: true,
           cardLoading: false,
         };
+      case personalActionTypes.LOADING_TRUE:
+        return {
+          ...state,
+          loading: true,
+        };
 
       default:
         return state;
@@ -66,6 +82,7 @@ export const PersonalInfoProvider = ({ children }) => {
   const initialState = {
     addresses: [],
     cards: [],
+    address: null,
     loading: true,
     cardLoading: true,
     session: null,

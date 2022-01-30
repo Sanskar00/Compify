@@ -23,12 +23,12 @@ export const addAddress = async (dispatch, formData) => {
 export const getAddresses = async (dispatch) => {
   try {
     const res = await axios.get("/api/personalInfo/address");
-
     dispatch({
       type: personalActionTypes.GET_ADDRESSES,
       payload: res.data,
     });
   } catch (error) {
+    console.log(error);
     dispatch({
       type: personalActionTypes.GET_ADDRESSES_ERROR,
       payload: {
@@ -118,4 +118,9 @@ export const deleteCards = async (dispatch, cardId) => {
       },
     });
   }
+};
+
+export const loadingState = (dispatch) => {
+  console.log("loading");
+  dispatch(personalActionTypes.LOADING_TRUE);
 };

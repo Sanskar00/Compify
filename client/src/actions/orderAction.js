@@ -3,7 +3,6 @@ import { cartActionTypes, orderActionTypes } from "./types";
 
 //order product
 export const orderedProduct = async (dispatch, product) => {
-  console.log(product);
   dispatch({
     type: orderActionTypes.GET_PRODUCT,
     payload: product,
