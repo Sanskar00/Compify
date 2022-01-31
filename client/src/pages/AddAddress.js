@@ -11,6 +11,7 @@ const AddAddress = () => {
     address: "",
     cityDistrictTown: "",
     addressType: "",
+    defaultAddress: false,
   });
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -127,10 +128,24 @@ const AddAddress = () => {
             </label>
           </div>
         </section>
+        <div className="flex items-center gap-2 place-self-start mx-8">
+          <input
+            type="radio"
+            id="html"
+            name="defaultAddress"
+            value={true}
+            onChange={onChange}
+            className="h-3 w-3 text-flame-orange "
+          />
+          <label for="office" className="text-sm">
+            Default
+          </label>
+        </div>
+
         <input
           type="submit"
           className="w-10/12 h-10  cursor-pointer bg-flame-orange rounded-lg text-white"
-          value="Save Adress"
+          value={true}
         ></input>
       </form>
     </div>

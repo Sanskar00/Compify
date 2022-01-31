@@ -45,6 +45,10 @@ const PersonalInfoSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
+      defaultAddress: {
+        type: Boolean,
+        default: true,
+      },
     },
   ],
   cards: [

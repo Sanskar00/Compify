@@ -51,6 +51,7 @@ router.post(
       landmark,
       alternatePhone,
       addressType,
+      defaultAddress,
     } = req.body;
 
     try {
@@ -70,7 +71,17 @@ router.post(
           landmark,
           alternatePhone,
           addressType,
+          defaultAddress,
         };
+
+        if (defaultAddress) {
+          const address = personalInfo.addresses.find(
+            (address) => address.defaultAddress === true
+          );
+
+          address.defaultAddress = false;
+        }
+
         personalInfo.addresses.unshift(newAddress);
         await personalInfo.save();
         res.json(personalInfo.addresses);
@@ -89,6 +100,7 @@ router.post(
               landmark,
               alternatePhone,
               addressType,
+              defaultAddress,
             },
           ],
         });
@@ -140,6 +152,45 @@ router.delete("/address/delete/:addressId", auth, async (req, res) => {
     );
 
     personalInfo.addresses = fileteredAddresses;
+    await personalInfo.save();
+
+    res.json(personalInfo.addresses);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+
+    console.log(req.body);
+  }
+});
+
+//@route update api/personalInfo/address/default/:addressId
+//@desc update a defaultAddress
+//@access Protected
+router.put("/address/default/:addressId", auth, async (req, res) => {
+  try {
+    const personalInfo = await PersonalInfo.findOne({ user: req.user.id });
+
+    if (!personalInfo) {
+      return res.status(404).json({ msg: "No Personal Info found" });
+    }
+
+    const addresses = personalInfo.addresses;
+
+    const defaultAddress = addresses.find(
+      (address) => address.defaultAddress == true
+    );
+
+    const updateAddress = addresses.find(
+      (address) => address.id === req.params.addressId
+    );
+
+    if (defaultAddress) {
+      defaultAddress.defaultAddress = false;
+      updateAddress.defaultAddress = true;
+    } else {
+      updateAddress.defaultAddress = true;
+    }
+
     await personalInfo.save();
 
     res.json(personalInfo.addresses);

@@ -32,6 +32,7 @@ import OrderPage from "./pages/OrderPage";
 import { OrderProvider } from "./context/OrderContext";
 import BuyPage from "./pages/GetAddress";
 import GetAddress from "./pages/GetAddress";
+import PaymentPage from "./pages/PaymentPage";
 
 // import SamplePage from "./SamplePage";
 
@@ -82,6 +83,7 @@ function App() {
 
                   <Route path="/address/addAddress" element={<AddAddress />} />
                   <Route path="/buyProduct" element={<GetAddress />} />
+                  <Route path="/payment" element={<PaymentPage />} />
                   <Route
                     path="/cart"
                     element={

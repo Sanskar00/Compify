@@ -110,7 +110,14 @@ const GetAddress = () => {
           {/* pridceDetails */}
           <div className="shadow px-1 py-2 bg-white z-50  border flex justify-between w-screen fixed bottom-0 items-center">
             <h1>{product.productPrice}</h1>
-            <button className="bg-light-flame-orange text-white text-lg rounded px-6 py-1">
+            <button
+              className="bg-light-flame-orange text-white text-lg rounded px-6 py-1"
+              onClick={() => {
+                !address
+                  ? console.log("address is required")
+                  : navigate("/payment", { state: address });
+              }}
+            >
               Continue
             </button>
           </div>

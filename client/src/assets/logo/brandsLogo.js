@@ -52,7 +52,8 @@ export const brands = [
             y="0"
             className="h-12 w-12 md:h-28 md:w-28"
             filterUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
+            color-interpolation-filters="sRGB"
+            currentColor="white"
           >
             <feFlood fillOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix

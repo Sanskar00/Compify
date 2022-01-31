@@ -3,54 +3,92 @@ const router = express.Router();
 const auth = require("../../middleware/auth");
 const Order = require("../../models/Order");
 const Product = require("../../models/Product");
+const PersonalInfo = require("../../models/Personal");
+const { body, validationResult } = require("express-validator");
 
-router.post("/:productId", auth, async (req, res) => {
+router.post("/:addressId/:productId", auth, async (req, res) => {
   try {
+    const errors = validationResult(req);
+
     let order = await Order.findOne({ user: req.user.id });
 
     const product = await Product.findById(req.params.productId);
 
+    const personalInfo = await PersonalInfo.findOne({ user: req.user.id });
+
+    const address = personalInfo.addresses.find(
+      (address) => address.id === req.params.addressId
+    );
+
+    console.log(personalInfo);
     console.log(`add product ${product}`);
+    console.log(`address ${address}`);
 
-    console.log(order);
+    // if (order) {
+    //   const images = product.productImage;
 
-    if (order) {
-      const images = product.productImage;
+    //   let orderDetails = order.orderDetails;
 
-      order.products.unshift({
-        _id: req.params.productId,
-        productImage: images,
-        model: product.model,
-        cpuType: product.cpuType,
-        memorySize: product.memorySize,
-        storageSize: product.storageSize,
-        display: product.display,
-        quantity: product.quantity,
-        productPrice: product.productPrice,
-      });
-      await order.save();
-    } else {
-      const images = product.productImage;
-      order = new Order({
-        user: req.user.id,
-        products: [
-          {
-            _id: req.params.productId,
-            productImage: images,
-            model: product.model,
-            cpuType: product.cpuType,
-            memorySize: product.memorySize,
-            storageSize: product.storageSize,
-            display: product.display,
-            quantity: product.quantity,
-            productPrice: product.productPrice,
-          },
-        ],
-      });
-      await order.save();
-    }
+    //   orderDetails.addresses.unshift({
+    //     _id: req.body.addressID,
+    //     name: address.name,
+    //     pincode: address.pincode,
+    //     address: address.address,
+    //     cityDistrictTown: address.cityDistrictTown,
+    //     state: address.state,
+    //     landmark: address.landmark,
+    //     alternatePhone: address.alternatePhone,
+    //     addressType: address.addressType,
+    //   });
 
-    res.json(order);
+    //   orderDetails.products.unshift({
+    //     _id: req.params.productId,
+    //     productImage: images,
+    //     model: product.model,
+    //     cpuType: product.cpuType,
+    //     memorySize: product.memorySize,
+    //     storageSize: product.storageSize,
+    //     display: product.display,
+    //     quantity: product.quantity,
+    //     productPrice: product.productPrice,
+    //   });
+    //   await order.save();
+    // } else {
+    //   const images = product.productImage;
+
+    //   order = new Order({
+    //     user: req.user.id,
+    //     orderDetails: {
+    //       products: [
+    //         {
+    //           _id: req.params.productId,
+    //           productImage: images,
+    //           model: product.model,
+    //           cpuType: product.cpuType,
+    //           memorySize: product.memorySize,
+    //           storageSize: product.storageSize,
+    //           display: product.display,
+    //           quantity: product.quantity,
+    //           productPrice: product.productPrice,
+    //         },
+    //       ],
+    //       addresses: {
+    //         _id: req.body.addressID,
+    //         // name: address.name,name: address.name,
+    //         pincode: address.pincode,
+    //         address: address.address,
+    //         cityDistrictTown: address.cityDistrictTown,
+    //         state: address.state,
+    //         landmark: address.landmark,
+    //         alternatePhone: address.alternatePhone,
+    //         addressType: address.addressType,
+    //       },
+    //     },
+    //   });
+    //   await order.save();
+    // }
+
+    // res.json(order);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
