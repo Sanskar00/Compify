@@ -2,15 +2,23 @@ import React, { useContext, useState } from "react";
 import { Navigate } from "react-router";
 import { useNavigate } from "react-router-dom";
 import { login } from "../actions/authAction";
+import { AlertContext } from "../context/AlertContext";
 import { AuthContext } from "../context/AuthContext";
 
 const LoginPage = () => {
   const [state, dispatch] = useContext(AuthContext);
 
+  const [alertState, alertDispatch] = useContext(AlertContext);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const dispatches = {
+    dispatch,
+    alertDispatch,
+  };
 
   const { email, password } = formData;
   const navigate = useNavigate();
@@ -20,7 +28,7 @@ const LoginPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    login(dispatch, email, password);
+    login(dispatches, email, password);
     if (state.isAuthenticated === true) {
       navigate("/");
     }

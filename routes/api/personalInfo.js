@@ -193,7 +193,7 @@ router.put("/address/default/:addressId", auth, async (req, res) => {
 
     await personalInfo.save();
 
-    res.json(personalInfo.addresses);
+    res.json(updateAddress);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -241,6 +241,10 @@ router.post("/v1/checkout/sessions", auth, async (req, res) => {
 
     const session_url = session.url;
 
+    const sessionUrlArray = session_url.split("/");
+
+    console.log(sessionUrlArray[4]);
+
     res.json({ session, session_url });
   } catch (err) {
     console.error(err.message);
@@ -249,6 +253,10 @@ router.post("/v1/checkout/sessions", auth, async (req, res) => {
     console.log(req.body);
   }
 });
+
+//@route get /getSession/createPayment
+//@desc get a card list
+//@access Protected
 
 //@route get /v1/customers/cards/:id
 //@desc get a card list

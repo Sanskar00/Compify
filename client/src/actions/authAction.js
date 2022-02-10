@@ -47,13 +47,15 @@ export const register = async (dispatch, formData) => {
   }
 };
 
-//login user
-export const login = async (dispatch, email, password) => {
+// login user
+export const login = async (dispatches, email, password) => {
   const config = {
     heders: {
       "Content-Type": "applicaion/json",
     },
   };
+
+  const { dispatch, alertDispatch } = dispatches;
 
   try {
     const res = await axios.post("/api/auth", { email, password }, config);
@@ -68,7 +70,7 @@ export const login = async (dispatch, email, password) => {
 
     if (errors) {
       errors.forEach((error) =>
-        dispatch(setAlert(dispatch, error.msg, "danger"))
+        setAlert(alertDispatch, error.msg, "text-red-900")
       );
     }
 

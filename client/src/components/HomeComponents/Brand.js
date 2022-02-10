@@ -8,7 +8,7 @@ const Brand = (props) => {
   return (
     <div className="my-12 md:my-12 grid">
       <h1 className="text-xl font-bold md:mx-20 lg:mx-48">Brands</h1>
-      <div className="mt-4 mx-2 w-10/12 place-self-center md:mx-32 lg:mx-60  md:w-2/3  grid grid-cols-3 gap-2 place-items-center md:grid-cols-3  lg:grid-cols-6">
+      <div className="mt-4 mx-2 w-10/12 place-self-center   md:w-2/3  grid grid-cols-3 gap-2 place-items-center md:grid-cols-3  lg:grid-cols-6">
         {brands.map((brand) => {
           return (
             <div

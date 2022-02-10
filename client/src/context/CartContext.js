@@ -5,7 +5,6 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const cartReducer = (state, action) => {
-    console.log(action);
     const { type, payload } = action;
     switch (type) {
       case cartActionTypes.GET_CART:
@@ -15,6 +14,7 @@ export const CartProvider = ({ children }) => {
           loading: false,
         };
       case cartActionTypes.ADD_PRODUCT:
+      case cartActionTypes.ADD_BUY_CART:
         return {
           ...state,
           cart: [...state.cart, payload],

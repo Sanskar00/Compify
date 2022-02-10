@@ -35,7 +35,7 @@ router.post("/:productId", auth, async (req, res) => {
       } else {
         return res
           .status(400)
-          .json({ errors: [{ msg: "Product already added" }] });
+          .json({ errors: [{ msg: "Product already added to cart" }] });
       }
       product.isCart.unshift({ user: req.user.id });
       await cart.save();
@@ -119,3 +119,77 @@ router.delete("/delete/:productId", auth, async (req, res) => {
 });
 
 module.exports = router;
+
+router.put("/buy/:productId", auth, async (req, res) => {
+  try {
+    let cart = await Cart.findOne({ user: req.user.id });
+
+    const product = await Product.findById(req.params.productId);
+
+    if (cart) {
+      const isCart = product.isCart.find((user) => user.user == req.user.id);
+
+      const images = product.productImage;
+
+      if (!isCart) {
+        cart.products.unshift({
+          _id: req.params.productId,
+          productImage: images,
+          model: product.model,
+          cpuType: product.cpuType,
+          memorySize: product.memorySize,
+          storageSize: product.storageSize,
+          display: product.display,
+          quantity: product.quantity,
+          productPrice: product.productPrice,
+        });
+      } else {
+        const removeProduct = cart.products.filter(
+          (product) => product.id !== req.params.productId
+        );
+
+        cart.products = removeProduct;
+
+        cart.products.unshift({
+          _id: req.params.productId,
+          productImage: images,
+          model: product.model,
+          cpuType: product.cpuType,
+          memorySize: product.memorySize,
+          storageSize: product.storageSize,
+          display: product.display,
+          quantity: product.quantity,
+          productPrice: product.productPrice,
+        });
+      }
+      product.isCart.unshift({ user: req.user.id });
+      await cart.save();
+      await product.save();
+    } else {
+      const images = product.productImage;
+      cart = new Cart({
+        user: req.user.id,
+        products: [
+          {
+            _id: req.params.productId,
+            productImage: images,
+            model: product.model,
+            cpuType: product.cpuType,
+            memorySize: product.memorySize,
+            storageSize: product.storageSize,
+            display: product.display,
+            quantity: product.quantity,
+            productPrice: product.productPrice,
+          },
+        ],
+      });
+      product.isCart.unshift({ user: req.user.id });
+      await cart.save();
+    }
+
+    res.json(cart);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});

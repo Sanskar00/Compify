@@ -6,14 +6,21 @@ import { AuthContext } from "../context/AuthContext";
 import { cartIcon } from "../assets/logo/cartIcon";
 import { NavLink } from "react-router-dom";
 import Button from "../components/GlobalComponents/Button";
+import { AlertContext } from "../context/AlertContext";
 const CartPage = () => {
   const [cartState, dispatch] = useContext(CartContext);
+
   const [authState, authDispatch] = useContext(AuthContext);
+
+  const [{}, alertDispatch] = useContext(AlertContext);
+
   const { plus, deleteIcon, minus } = cartIcon;
 
   console.log(cartState);
 
   const { cart, loading } = cartState;
+
+  const dispatches = { dispatch, alertDispatch };
 
   useEffect(() => {
     getCart(dispatch);
@@ -78,7 +85,7 @@ const CartPage = () => {
                   </div>
                   <div
                     className="mx-4"
-                    onClick={() => removeProductCart(dispatch, product._id)}
+                    onClick={() => removeProductCart(dispatches, product._id)}
                   >
                     <Button name="delete" />
                   </div>

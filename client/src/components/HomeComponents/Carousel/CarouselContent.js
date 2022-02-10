@@ -37,7 +37,7 @@ const CarouselContent = (props) => {
   return loading ? (
     <div
       className={
-        " mt-8  md:w-full md:ml-20  absolute w-full  h-52 opactity-100 overflow-hidden scroll-smooth  "
+        " mt-8  md:w-full md:ml-20  absolute w-full  h-52 opactity-100 overflow-hidden translate-x-full duration-500  "
       }
     >
       <div className=" w-screen md:w-3/4 lg:ml-20   grid gap-8 grid-rows-2 mt-8 lg:flex lg:justify-between md:grid-col-3 md:grid-rows-1 md:gap-40">

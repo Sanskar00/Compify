@@ -14,12 +14,12 @@ const FeaturedProduct = (props) => {
   }, []);
 
   return (
-    <div className="mt-4 md:mt-12">
+    <div className="mt-4 md:mt-12 lg:w-screen lg:grid  ">
       <h1 className="text-xl font-bold md:mx-20 lg:mx-48">
         {" "}
         Featured Products
       </h1>
-      <div className="mt-4 mx-2 md:mx-32 lg:mx-60  md:w-2/3  grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-4 mx-2 md:mx-32 md:w-2/3  grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:mx-0 md:place-self-center">
         {featuredProducts.map((product) => {
           return (
             <ProductCard key={product.id} product={product} key={product._id} />

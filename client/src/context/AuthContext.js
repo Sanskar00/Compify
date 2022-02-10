@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
       case authActionTypes.AUTH_ERROR:
       case authActionTypes.ACCOUNT_DELELTED:
       case authActionTypes.LOGOUT:
+      case authActionTypes.LOGIN_FAIL:
         localStorage.removeItem("token");
         return {
           ...state,

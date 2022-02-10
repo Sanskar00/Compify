@@ -24,6 +24,12 @@ export const PersonalInfoProvider = ({ children }) => {
           address: payload,
           loading: false,
         };
+      case personalActionTypes.CHANGE_DEFAULT_ADREES:
+        return {
+          ...state,
+          defaultAddress: payload,
+          loading: false,
+        };
       case personalActionTypes.ADD_ADDRESS:
         return {
           ...state,
@@ -46,7 +52,6 @@ export const PersonalInfoProvider = ({ children }) => {
           cardLoading: false,
         };
       case personalActionTypes.ADD_CARD:
-        console.log(payload);
         return {
           ...state,
           session: payload,
@@ -86,6 +91,7 @@ export const PersonalInfoProvider = ({ children }) => {
     loading: true,
     cardLoading: true,
     session: null,
+    defaultAddress: null,
   };
 
   const [state, dispatch] = useReducer(personalInfoReducer, initialState);

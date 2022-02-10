@@ -5,6 +5,9 @@ const Order = require("../../models/Order");
 const Product = require("../../models/Product");
 const PersonalInfo = require("../../models/Personal");
 const { body, validationResult } = require("express-validator");
+const stripe = require("stripe")(
+  "sk_test_51K0RvbSHqep0AJHbmysnTuSNsLp7ohhGS6thayodJOkEVjdxXSft0d8f7ZfBaeSDQXx5wvZZbIs8UZklFWJhBfTU00dylibS8m"
+);
 
 router.post("/:addressId/:productId", auth, async (req, res) => {
   try {
@@ -20,85 +23,74 @@ router.post("/:addressId/:productId", auth, async (req, res) => {
       (address) => address.id === req.params.addressId
     );
 
-    console.log(personalInfo);
-    console.log(`add product ${product}`);
-    console.log(`address ${address}`);
+    console.log(address);
 
-    // if (order) {
-    //   const images = product.productImage;
+    if (order) {
+      let orderDetails = order.orderDetails;
 
-    //   let orderDetails = order.orderDetails;
+      orderDetails.addresses.unshift(address);
 
-    //   orderDetails.addresses.unshift({
-    //     _id: req.body.addressID,
-    //     name: address.name,
-    //     pincode: address.pincode,
-    //     address: address.address,
-    //     cityDistrictTown: address.cityDistrictTown,
-    //     state: address.state,
-    //     landmark: address.landmark,
-    //     alternatePhone: address.alternatePhone,
-    //     addressType: address.addressType,
-    //   });
+      orderDetails.products.unshift(product);
+      await order.save();
+    } else {
+      order = new Order({
+        user: req.user.id,
+        orderDetails: {
+          products: [product],
+          addresses: [address],
+        },
+      });
+      await order.save();
+    }
 
-    //   orderDetails.products.unshift({
-    //     _id: req.params.productId,
-    //     productImage: images,
-    //     model: product.model,
-    //     cpuType: product.cpuType,
-    //     memorySize: product.memorySize,
-    //     storageSize: product.storageSize,
-    //     display: product.display,
-    //     quantity: product.quantity,
-    //     productPrice: product.productPrice,
-    //   });
-    //   await order.save();
-    // } else {
-    //   const images = product.productImage;
-
-    //   order = new Order({
-    //     user: req.user.id,
-    //     orderDetails: {
-    //       products: [
-    //         {
-    //           _id: req.params.productId,
-    //           productImage: images,
-    //           model: product.model,
-    //           cpuType: product.cpuType,
-    //           memorySize: product.memorySize,
-    //           storageSize: product.storageSize,
-    //           display: product.display,
-    //           quantity: product.quantity,
-    //           productPrice: product.productPrice,
-    //         },
-    //       ],
-    //       addresses: {
-    //         _id: req.body.addressID,
-    //         // name: address.name,name: address.name,
-    //         pincode: address.pincode,
-    //         address: address.address,
-    //         cityDistrictTown: address.cityDistrictTown,
-    //         state: address.state,
-    //         landmark: address.landmark,
-    //         alternatePhone: address.alternatePhone,
-    //         addressType: address.addressType,
-    //       },
-    //     },
-    //   });
-    //   await order.save();
-    // }
-
-    // res.json(order);
+    res.json(order);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
   }
 });
 
+router.post("/payment_intent", auth, async (req, res) => {
+  try {
+    const payment = await stripe.paymentIntents.create({
+      customer: req.body.customer_id,
+      payment_method: req.body.payment_intent_id,
+      amount: req.body.amount * 100,
+      currency: "inr",
+    });
+
+    if (!payment) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: "NO payment intent created" }] });
+    }
+
+    res.json(payment);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+router.post("/payment_intent_direct", auth, async (req, res) => {
+  try {
+    const payment = await stripe.paymentIntents.create({
+      amount: req.body.amount * 100,
+      currency: "inr",
+      payment_method_types: ["card"],
+    });
+
+    res.json(payment);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 router.get("/", auth, async (req, res) => {
   try {
     let order = await Order.findOne({ user: req.user.id });
-    const products = order.products;
+    const products = order.orderDetails.products;
 
     if (!order || products.length === 0) {
       return res.status(404).json({ msg: "No product is ordered" });

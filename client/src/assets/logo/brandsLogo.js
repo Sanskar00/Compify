@@ -53,9 +53,8 @@ export const brands = [
             className="h-12 w-12 md:h-28 md:w-28"
             filterUnits="userSpaceOnUse"
             color-interpolation-filters="sRGB"
-            currentColor="white"
           >
-            <feFlood fillOpacity="0" result="BackgroundImageFix" />
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
             <feColorMatrix
               in="SourceAlpha"
               type="matrix"
@@ -91,7 +90,7 @@ export const brands = [
       <svg
         className="h-20 w-20 md:h-28 md:w-28"
         viewBox="0 0 132 132"
-        fill="none"
+        fill="white"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

@@ -8,7 +8,7 @@ const ProductCard = ({ product, shadow }) => {
   const navigate = useNavigate();
   return (
     <div
-      className={`${shadow} w-screen md:w-full  h-36 flex md:grid  md:h-96`}
+      className={`${shadow} w-screen md:w-full  h-36 flex md:grid  md:h-96 overflow-hidden`}
       onClick={() => {
         navigate(`/product/${product._id}`);
       }}

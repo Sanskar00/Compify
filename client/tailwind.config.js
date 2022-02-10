@@ -3,6 +3,10 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      backdropFilter: {
+        none: "none",
+        blur: "blur(20px)",
+      },
       colors: {
         "new-blue": "#0F3864",
         "dark-new-blue": "#1F293A",
@@ -12,6 +16,7 @@ module.exports = {
         "teal-200": "#00b3b3",
         "teal-500": "#006767",
         slate: "rgb(248 250 252)",
+        "cyan-300": "rgb(103 232 249)",
         "slate-900": "rgb(15 23 42)",
       },
       width: {

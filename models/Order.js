@@ -3,83 +3,8 @@ const mongoose = require("mongoose");
 const OrderSchema = new mongoose.Schema(
   {
     orderDetails: {
-      products: [
-        {
-          _id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Product",
-          },
-          productImage: {
-            type: [String],
-          },
-          model: {
-            type: String,
-            required: true,
-          },
-          cpuType: {
-            type: String,
-            required: true,
-          },
-          memorySize: {
-            type: String,
-            required: true,
-          },
-          storageSize: {
-            type: String,
-            required: true,
-          },
-          display: {
-            type: String,
-            required: true,
-          },
-          quantity: {
-            type: Number,
-            default: 1,
-          },
-          productPrice: {
-            type: Number,
-            required: true,
-          },
-        },
-      ],
-      address: [
-        {
-          name: {
-            type: String,
-            required: true,
-          },
-          mobileNumber: {
-            type: String,
-            required: true,
-          },
-          pincode: {
-            type: String,
-            required: true,
-          },
-          address: {
-            type: String,
-            required: true,
-          },
-          cityDistrictTown: {
-            type: String,
-            required: true,
-          },
-          state: {
-            type: String,
-            required: true,
-          },
-          landmark: {
-            type: String,
-          },
-          alternatePhone: {
-            type: String,
-          },
-          addressType: {
-            type: String,
-            required: true,
-          },
-        },
-      ],
+      products: [],
+      addresses: [],
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,

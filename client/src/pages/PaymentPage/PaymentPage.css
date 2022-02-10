@@ -1,0 +1,25 @@
+.card {
+  width: full;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+
+.card:hover {
+  transform: rotateY(180deg);
+}
+
+.front {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+}
+
+.back {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}

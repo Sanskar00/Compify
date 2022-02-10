@@ -59,11 +59,33 @@ export const deleteAddress = async (dispatch, addressId) => {
   }
 };
 
+export const changeDefaultAddress = async (dispatch, addressId) => {
+  try {
+    const res = await axios.put(
+      `/api/personalInfo/address/default/${addressId}`
+    );
+
+    dispatch({
+      type: personalActionTypes.CHANGE_DEFAULT_ADREES,
+      payload: res,
+    });
+  } catch (error) {
+    dispatch({
+      type: personalActionTypes.REMOVE_ADDRESS_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
 export const addCard = async (dispatch, url) => {
   try {
     const res = await axios.post("/api/personalInfo/v1/checkout/sessions", {
       url,
     });
+
     dispatch({
       type: personalActionTypes.ADD_CARD,
       payload: res.data,

@@ -32,8 +32,11 @@ import OrderPage from "./pages/OrderPage";
 import { OrderProvider } from "./context/OrderContext";
 import BuyPage from "./pages/GetAddress";
 import GetAddress from "./pages/GetAddress";
-import PaymentPage from "./pages/PaymentPage";
-
+import PaymentPage from "./pages/PaymentPage/PaymentPage";
+import Alert from "./components/GlobalComponents/Alert";
+import { AlertContext, AlertProvider } from "./context/AlertContext";
+import { Elements, useElements, useStripe } from "@stripe/react-stripe-js";
+import { stripePromise } from "./utils/PaymentUtils";
 // import SamplePage from "./SamplePage";
 
 if (localStorage.token) {
@@ -49,58 +52,66 @@ function App() {
   }, []);
 
   return (
-    <ProductProvider>
-      <PersonalInfoProvider>
-        <OrderProvider>
-          <CartProvider>
-            <Router>
-              <div className="App ">
-                <Navbar />
-                <SearchProducts />
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/login" element={<LoginPage />} />
-                  <Route path="/signUp" element={<SignUpPage />} />
-                  <Route
-                    path="/category/:categoryName"
-                    element={<LaptopTypeProducts />}
-                  />
-                  <Route
-                    path="/brand/:brand"
-                    element={<BrandsTypeLaptopPage />}
-                  />
-                  <Route
-                    path="/product/:productId"
-                    element={<LaptopViewPage />}
-                  />
-                  <Route path="/profile" element={<ProfilePage />}>
-                    <Route path="address" element={<Address />} />
-                    <Route path="card" element={<CardPage />} />
-                    <Route path="order" element={<OrderPage />} />
-                  </Route>
-                  <Route path="/address" element={<Address />} />
-                  <Route path="/card" element={<CardPage />} />
+    <Elements stripe={stripePromise}>
+      <AlertProvider>
+        <ProductProvider>
+          <PersonalInfoProvider>
+            <OrderProvider>
+              <CartProvider>
+                <Router>
+                  <div className="App ">
+                    <Navbar />
+                    <Alert />
+                    <SearchProducts />
+                    <Routes>
+                      <Route path="/" element={<HomePage />} />
+                      <Route path="/login" element={<LoginPage />} />
+                      <Route path="/signUp" element={<SignUpPage />} />
+                      <Route
+                        path="/category/:categoryName"
+                        element={<LaptopTypeProducts />}
+                      />
+                      <Route
+                        path="/brand/:brand"
+                        element={<BrandsTypeLaptopPage />}
+                      />
+                      <Route
+                        path="/product/:productId"
+                        element={<LaptopViewPage />}
+                      />
+                      <Route path="/profile" element={<ProfilePage />}>
+                        <Route path="address" element={<Address />} />
+                        <Route path="card" element={<CardPage />} />
+                        <Route path="order" element={<OrderPage />} />
+                      </Route>
+                      <Route path="/address" element={<Address />} />
+                      <Route path="/card" element={<CardPage />} />
 
-                  <Route path="/address/addAddress" element={<AddAddress />} />
-                  <Route path="/buyProduct" element={<GetAddress />} />
-                  <Route path="/payment" element={<PaymentPage />} />
-                  <Route
-                    path="/cart"
-                    element={
-                      state.isAuthenticated === true ? (
-                        <CartPage />
-                      ) : (
-                        <Navigate to="/login" />
-                      )
-                    }
-                  />
-                </Routes>
-              </div>
-            </Router>
-          </CartProvider>
-        </OrderProvider>
-      </PersonalInfoProvider>
-    </ProductProvider>
+                      <Route
+                        path="/address/addAddress"
+                        element={<AddAddress />}
+                      />
+                      <Route path="/buyProduct" element={<GetAddress />} />
+                      <Route path="/payment" element={<PaymentPage />} />
+                      <Route
+                        path="/cart"
+                        element={
+                          state.isAuthenticated === true ? (
+                            <CartPage />
+                          ) : (
+                            <Navigate to="/login" />
+                          )
+                        }
+                      />
+                    </Routes>
+                  </div>
+                </Router>
+              </CartProvider>
+            </OrderProvider>
+          </PersonalInfoProvider>
+        </ProductProvider>
+      </AlertProvider>
+    </Elements>
   );
 }
 

@@ -29,13 +29,13 @@ const LatpopType = (props) => {
 
   const navigate = useNavigate();
   return (
-    <div className="lg:mx-24 md:mx-12 lg:mt-14 mt-8 md:mt-8 md:h-60 md:flex md:justify-around ">
+    <div className="w-screen grid  lg:mt-14 mt-8 md:mt-8 md:h-60 md:flex md:justify-around ">
       {laptopTypes.map((type) => {
         const typeId = type.laptopType;
 
         return (
           <div
-            className="h-12 w-11/12 mx-2 my-2 lg:h-48 lg:w-48 md:h-36 md:w-36 bg-new-blue rounded-xl gap-4 grid place-items-center cursor-pointer"
+            className="h-12 w-11/12  my-2 lg:h-48 lg:w-48 md:h-36 md:w-36 bg-new-blue rounded-xl gap-4 grid place-self-center place-items-center cursor-pointer"
             onClick={() => {
               navigate(`/category/${typeId}`, {
                 state: type.onDisplay,
