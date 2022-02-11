@@ -43,6 +43,7 @@ export const PaymentConfirmation = async (props) => {
           console.log(result.error.message);
         } else if (result.paymentIntent.status === "succeeded") {
           orderedProduct(orderDispatch, ids);
+          setAlert(alertDispatch, "Your order is placed", "text-green-500");
         }
       });
   } else if (orderState.continueButton === "directContinue") {
