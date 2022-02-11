@@ -20,6 +20,7 @@ import { PaymentConfirmation } from "../../utils/PaymentUtils";
 import { loadStripe } from "@stripe/stripe-js";
 import { CardElement } from "@stripe/react-stripe-js";
 import CardPayElement from "../../components/PaymentPageComponent/CardPayElement";
+import { AlertContext } from "../../context/AlertContext";
 
 const SPaymentPage = () => {
   const [personalState, personalDispatch] = useContext(PersonalInfoContext);
@@ -27,6 +28,8 @@ const SPaymentPage = () => {
   const [cartState, cartDispatch] = useContext(CartContext);
 
   const [orderState, orderDispatch] = useContext(OrderContext);
+
+  const [{}, alertDispatch] = useContext(AlertContext);
 
   const location = useLocation();
 
@@ -78,6 +81,7 @@ const SPaymentPage = () => {
     },
     cart: cartState,
     personal: personalState,
+    alertDispatch,
   };
 
   return (

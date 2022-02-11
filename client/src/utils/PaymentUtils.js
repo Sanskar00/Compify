@@ -5,13 +5,15 @@ import { CardElement, useElements } from "@stripe/react-stripe-js";
 import { CartContext } from "../context/CartContext";
 import { PersonalInfoContext } from "../context/PersonalContext";
 import { orderedProduct } from "../actions/orderAction";
+import { AlertContext } from "../context/AlertContext";
+import { setAlert } from "../actions/alertAction";
 
 export var stripePromise = loadStripe(
   "pk_test_51K0RvbSHqep0AJHb7IwAhCnheAkNNpLRFZlW0zY8pQ6EyusidDfENz34bREGpFjiddQansVxhLIJvrzgA4W573X100Ay157MmG"
 );
 
 export const PaymentConfirmation = async (props) => {
-  const { order, cart, personal } = props;
+  const { order, cart, personal, alertDispatch } = props;
 
   const { orderState, orderDispatch } = order;
 
@@ -55,6 +57,7 @@ export const PaymentConfirmation = async (props) => {
           console.log(result.error.message);
         } else if (result.paymentIntent.status === "succeeded") {
           orderedProduct(orderDispatch, ids);
+          setAlert(alertDispatch, "Your order is placed", "text-green-500");
         }
       });
   }

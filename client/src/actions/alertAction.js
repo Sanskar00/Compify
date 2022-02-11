@@ -3,6 +3,7 @@ import { alertActionTypes } from "./types";
 
 export const setAlert = (dispatch, msg, alertType) => {
   const id = uuidv4();
+
   dispatch({
     type: alertActionTypes.SET_ALERT,
     payload: { msg, alertType, id },

@@ -26,19 +26,23 @@ router.post("/:addressId/:productId", auth, async (req, res) => {
     console.log(address);
 
     if (order) {
-      let orderDetails = order.orderDetails;
+      let orderDetails = {
+        product,
+        address,
+      };
 
-      orderDetails.addresses.unshift(address);
+      order.orderDetails.unshift(orderDetails);
 
-      orderDetails.products.unshift(product);
       await order.save();
     } else {
       order = new Order({
         user: req.user.id,
-        orderDetails: {
-          products: [product],
-          addresses: [address],
-        },
+        orderDetails: [
+          {
+            product,
+            address,
+          },
+        ],
       });
       await order.save();
     }
