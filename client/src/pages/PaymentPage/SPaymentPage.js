@@ -99,7 +99,7 @@ const SPaymentPage = () => {
             <h1 className="lg:col-start-2">No card added</h1>
           ) : (
             <>
-              <div className="md:grid md:place-self-start md:grid-cols-3 md:gap-4   hidden ">
+              <div className="md:grid lg:place-self-start md:grid-cols-2 md:gap-4  lg:grid-cols-3 hidden md:place-items-center ">
                 {personalState.cards.map((card) => {
                   return <CardLayout card={card} />;
                 })}
