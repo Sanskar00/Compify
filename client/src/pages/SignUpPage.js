@@ -42,7 +42,7 @@ const SignUpPage = () => {
             onSubmit={onSubmit}
           >
             <input
-              className="w-2/3 h-12 pr-8 appearance-none  pl-2 rounded-lg border-gray-200 border leading-tight focus:outline-none focus:bg-white focus:border-new-blue"
+              className="w-2/3 h-12 pr-8 appearance-none  pl-2 rounded-lg border-gray-200 border leading-tight focus:outline-none focus:bg-white focus:border-new-blue md:w-2/6 lg:w-1/5"
               placeholder="Name"
               type="text"
               name="name"
@@ -51,7 +51,7 @@ const SignUpPage = () => {
             ></input>
 
             <input
-              className="w-2/3 h-12 pr-8 appearance-none   pl-2 rounded-lg border-gray-200 border leading-tight focus:outline-none focus:bg-white focus:border-new-blue"
+              className="w-2/3 h-12 pr-8 appearance-none   pl-2 rounded-lg border-gray-200 border leading-tight focus:outline-none focus:bg-white focus:border-new-blue md:w-2/6 lg:w-1/5"
               placeholder="Mobile Number"
               type="numeric-only"
               name="mobileNumber"
@@ -60,7 +60,7 @@ const SignUpPage = () => {
             ></input>
 
             <input
-              className="w-2/3 h-12 pr-8 appearance-none  pl-2 rounded-lg border-gray-200 border leading-tight focus:outline-none focus:bg-white focus:border-new-blue"
+              className="w-2/3 h-12 pr-8 appearance-none  pl-2 rounded-lg border-gray-200 border leading-tight focus:outline-none focus:bg-white focus:border-new-blue md:w-2/6 lg:w-1/5"
               placeholder="Email"
               name="email"
               type="email"
@@ -68,7 +68,7 @@ const SignUpPage = () => {
               onChange={onChange}
             ></input>
             <input
-              className="w-2/3 h-12 pr-8 appearance-none   pl-2 rounded-lg border-gray-200 border   leading-tight focus:outline-none focus:bg-white focus:border-new-blue"
+              className="w-2/3 h-12 pr-8 appearance-none   pl-2 rounded-lg border-gray-200 border   leading-tight focus:outline-none focus:bg-white focus:border-new-blue md:w-2/6 lg:w-1/5"
               placeholder="Password"
               type="password"
               name="password"
@@ -76,7 +76,7 @@ const SignUpPage = () => {
               onChange={onChange}
             ></input>
             <input
-              className="w-2/3 h-12 pr-8 appearance-none   pl-2 rounded-lg border-gray-200 border   leading-tight focus:outline-none focus:bg-white focus:border-new-blue"
+              className="w-2/3 h-12 pr-8 appearance-none   pl-2 rounded-lg border-gray-200 border   leading-tight focus:outline-none focus:bg-white focus:border-new-blue md:w-2/6 lg:w-1/5"
               placeholder="Confirm Password"
               type="password"
               name="password2"
@@ -85,7 +85,7 @@ const SignUpPage = () => {
             ></input>
             <input
               type="submit"
-              className="w-2/3 h-12  cursor-pointer bg-new-blue rounded-lg text-white"
+              className="w-2/3 h-12  cursor-pointer bg-new-blue rounded-lg text-white md:w-2/6 lg:w-1/5"
               value="Sign Up"
             ></input>
           </form>
