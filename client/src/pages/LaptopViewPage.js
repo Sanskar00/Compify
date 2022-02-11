@@ -32,7 +32,7 @@ const LaptopViewPage = () => {
     getProduct(dispatch, productId, abortCont);
 
     return () => abortCont.abort;
-  }, [getProduct]);
+  }, [productId]);
 
   const dispatches = { dispatch, alertDispatch };
 
@@ -146,10 +146,10 @@ const LaptopViewPage = () => {
             />
 
             {/* Adding REview */}
-            <LaptopReview
+            {/* <LaptopReview
               product={product}
               key={`laptopreview${product._id}`}
-            />
+            /> */}
           </div>
         )}
       </div>

@@ -145,6 +145,14 @@ export const addReview = async (dispatch, productId, review) => {
   }
 };
 
+//searchClick
+export const searchClick = async (dispatch, click) => {
+  dispatch({
+    type: productActionTypes.Search_Click,
+    payload: click,
+  });
+};
+
 //clear product after unmounting component
 export const clearProduct = async (dispatch) => {
   dispatch({

@@ -62,7 +62,6 @@ function App() {
                   <div className="App ">
                     <Navbar />
                     <Alert />
-                    <SearchProducts />
                     <Routes>
                       <Route path="/" element={<HomePage />} />
                       <Route path="/login" element={<LoginPage />} />

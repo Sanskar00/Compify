@@ -16,8 +16,8 @@ const Navbar = () => {
   return (
     <div className="fixed  top-0 left-0 w-full z-50 ">
       <div className="grid grid-cols-3 md:grid-rows-2 lg:grid-rows-1 h-20 md:h-24  bg-new-blue text-white font-bold md:place-items-center   ">
-        <div className="lg:w-1/6 flex items-center justify-center ">
-          <svg
+        <div className="lg:w-1/6 flex items-center justify-start ">
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 md:mt-2 md:invisible "
             fill="none"
@@ -30,9 +30,9 @@ const Navbar = () => {
               strokeWidth="2"
               d="M4 6h16M4 12h16M4 18h16"
             />
-          </svg>
+          </svg> */}
           <Link to="/" element={HomePage}>
-            <h1 className="lg:text-2xl cursor-pointer text-xl ml-2 md:mt-2 md:mr-36">
+            <h1 className="lg:text-2xl cursor-pointer text-xl ml-2 md:mt-2 md:mr-36  ">
               Compify
             </h1>
           </Link>
@@ -112,4 +112,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar);
