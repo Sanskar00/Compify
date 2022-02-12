@@ -91,7 +91,7 @@ const Navbar = () => {
               <li
                 className="cursor-pointer"
                 onClick={() => {
-                  navigate(`/profile/personalInfo`);
+                  navigate(`/profile`);
                 }}
               >
                 <span>{authState.user.name.split(" ")[0]}</span>
