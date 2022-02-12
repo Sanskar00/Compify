@@ -9,7 +9,7 @@ const PersonalInfoPage = () => {
 
   const [cursorPointer, setCursorPointer] = useState("cursor-not-allowed");
 
-  const [authState, authDispatch] = useContext(AuthContext);
+  const [authState] = useContext(AuthContext);
 
   const { user } = authState;
 
