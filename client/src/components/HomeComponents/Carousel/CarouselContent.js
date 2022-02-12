@@ -25,7 +25,7 @@ const CarouselContent = (props) => {
   }
 
   useEffect(() => {
-    setTimeout(() => {
+    const indexTimeout = setTimeout(() => {
       setCounter(count === length - 1 ? 0 : count + 1);
     }, 3000);
   }, [count]);

@@ -37,6 +37,7 @@ import Alert from "./components/GlobalComponents/Alert";
 import { AlertContext, AlertProvider } from "./context/AlertContext";
 import { Elements, useElements, useStripe } from "@stripe/react-stripe-js";
 import { stripePromise } from "./utils/PaymentUtils";
+import PersonalInfoPage from "./components/ProfilePageComponent/PersonalInfoPage";
 // import SamplePage from "./SamplePage";
 
 if (localStorage.token) {
@@ -82,6 +83,10 @@ function App() {
                         <Route path="address" element={<Address />} />
                         <Route path="card" element={<CardPage />} />
                         <Route path="order" element={<OrderPage />} />
+                        <Route
+                          path="personalInfo"
+                          element={<PersonalInfoPage />}
+                        />
                       </Route>
                       <Route path="/address" element={<Address />} />
                       <Route path="/card" element={<CardPage />} />

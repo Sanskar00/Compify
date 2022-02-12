@@ -42,7 +42,12 @@ const MidLargeScreen = () => {
           </section>
         </div>
         <div className=" shadow border   h-full grid grid-rows-5 gap-2  px-4  ">
-          <div className=" flex justify-between cursor-pointer  place-items-center text-gray-500">
+          <div
+            className=" flex justify-between cursor-pointer  place-items-center text-gray-500"
+            onClick={() => {
+              navigate("/profile/personalInfo");
+            }}
+          >
             <h1>Personal Info</h1>
             {rightArrow}
           </div>
