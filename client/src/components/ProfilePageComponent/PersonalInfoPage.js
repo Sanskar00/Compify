@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useContext } from "react/cjs/react.development";
+import React, { useState, useContext } from "react";
+
 import { AuthContext } from "../../context/AuthContext";
 
 const PersonalInfoPage = () => {
