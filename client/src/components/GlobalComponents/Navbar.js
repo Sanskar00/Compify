@@ -88,14 +88,24 @@ const Navbar = () => {
             {authState.isAuthenticated === true &&
             authState.loading === false &&
             authState.user !== null ? (
-              <li
-                className="cursor-pointer"
-                onClick={() => {
-                  navigate(`/profile`);
-                }}
-              >
-                <span>{authState.user.name.split(" ")[0]}</span>
-              </li>
+              <>
+                <li
+                  className="cursor-pointer md:hidden"
+                  onClick={() => {
+                    navigate(`/profile`);
+                  }}
+                >
+                  <span>{authState.user.name.split(" ")[0]}</span>
+                </li>
+                <li
+                  className="cursor-pointer hidden md:block"
+                  onClick={() => {
+                    navigate(`/profile/personalInfo`);
+                  }}
+                >
+                  <span>{authState.user.name.split(" ")[0]}</span>
+                </li>
+              </>
             ) : (
               <li
                 onClick={() => {
