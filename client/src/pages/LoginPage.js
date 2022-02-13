@@ -34,10 +34,6 @@ const LoginPage = () => {
     }
   };
 
-  if (state.isAuthenticated) {
-    return <Navigate replace to="/" />;
-  }
-
   return (
     <div className="mt-20 w-screen h-screen  place-items-center relative">
       <div className="absolute top-12 w-full place-items-center grid">
