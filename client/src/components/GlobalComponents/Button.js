@@ -5,7 +5,7 @@ const Button = ({ name, color, hoverColor, sw }) => {
   return (
     <div>
       <button
-        className={`lg:h-5 lg:w-16 md:h-5 md:w-12 ${sw}  text-base md:text-sm font-bold  ${color} transition-colors duration-150 rounded-full hover:${hoverColor}  mt-1 cursor-pointer text-white z-0"`}
+        className={`lg:h-5 shadow lg:w-16 md:h-5 md:w-12 ${sw}  text-base md:text-sm font-bold  ${color} transition-colors duration-150 rounded-full hover:${hoverColor}  mt-1 cursor-pointer text-white z-0"`}
       >
         <a>
           <span className="lg:p-2 ">{name}</span>

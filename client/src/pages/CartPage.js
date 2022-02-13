@@ -58,7 +58,7 @@ const CartPage = () => {
                   }
                   shadow="shadow-none"
                 />
-                <div className="flex gap-2  ">
+                <div className="flex  ">
                   {/* <div className="flex gap-2 mx-4 mb-2 items-center">
                     deleteButton
                     {product.quantity === 1 ? (
@@ -82,7 +82,7 @@ const CartPage = () => {
                     </div>
                   </div> */}
                   <div
-                    className="mx-4"
+                    className="mx-4 mb-4 "
                     onClick={() => removeProductCart(dispatches, product._id)}
                   >
                     <Button name="delete" />
