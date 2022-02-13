@@ -23,7 +23,9 @@ export const loadUser = async (dispatch) => {
 };
 
 //Register User
-export const register = async (dispatch, formData) => {
+export const register = async (dispatches, formData) => {
+  const { dispatch, alertDispatch } = dispatches;
+
   try {
     const res = await axios.post("/api/users", formData);
 
@@ -31,15 +33,16 @@ export const register = async (dispatch, formData) => {
       type: authActionTypes.REGISTER_SUCCESS,
       payload: res.data,
     });
+
+    setAlert(alertDispatch, "Succefully created account", "text-green-500");
+
     dispatch(loadUser(dispatch));
   } catch (error) {
     const errors = error.response.data.errors;
 
-    if (errors) {
-      errors.forEach((error) =>
-        dispatch(setAlert(dispatch, error.msg, "danger"))
-      );
-    }
+    errors.forEach((error) =>
+      setAlert(alertDispatch, error.msg, "text-red-900")
+    );
 
     dispatch({
       type: authActionTypes.REGISTER_FAIL,

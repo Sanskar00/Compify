@@ -22,7 +22,7 @@ const OrderPage = () => {
         const { product, address, date } = orderDetails;
         return (
           <div
-            className="shadow md:w-full md:h-36 border flex place-self-center p-2 gap-4 justify-around "
+            className="shadow md:w-full md md:h-36 border flex place-self-center p-2 gap-4 justify-around "
             key={orderDetails._id}
           >
             <img

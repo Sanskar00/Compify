@@ -3,9 +3,14 @@ import { useNavigate } from "react-router";
 import { setAlert } from "../actions/alertAction";
 import { register } from "../actions/authAction";
 import { AuthContext } from "../context/AuthContext";
+import { AlertContext } from "../context/AlertContext";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
+
+  const [alerState, alertDispatch] = useContext(AlertContext);
+
+  console.log(alerState);
 
   const [state, dispatch] = useContext(AuthContext);
 
@@ -19,6 +24,11 @@ const SignUpPage = () => {
 
   const { name, mobileNumber, email, password, password2 } = formData;
 
+  const dispatches = {
+    dispatch,
+    alertDispatch,
+  };
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -27,9 +37,13 @@ const SignUpPage = () => {
     if (password !== password2) {
       setAlert(dispatch, "Passwords do not match", "danger");
     } else {
-      register(dispatch, { name, mobileNumber, email, password });
+      register(dispatches, { name, mobileNumber, email, password });
     }
   };
+
+  if (state.isAuthenticated === true) {
+    navigate("/");
+  }
   return (
     <div className="mt-20 w-screen h-screen  place-items-center relative">
       <div className="absolute top-12 w-full place-items-center grid">

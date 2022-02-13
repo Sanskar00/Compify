@@ -29,10 +29,11 @@ const LoginPage = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     login(dispatches, email, password);
-    if (state.isAuthenticated === true) {
-      navigate("/");
-    }
   };
+
+  if (state.isAuthenticated === true) {
+    navigate("/");
+  }
 
   return (
     <div className="mt-20 w-screen h-screen  place-items-center relative">

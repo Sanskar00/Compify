@@ -145,7 +145,7 @@ const AddAddress = () => {
         <input
           type="submit"
           className="w-10/12 h-10  cursor-pointer bg-flame-orange rounded-lg text-white"
-          value={true}
+          value="Add Address"
         ></input>
       </form>
     </div>

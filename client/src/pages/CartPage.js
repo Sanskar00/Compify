@@ -58,9 +58,9 @@ const CartPage = () => {
                   }
                   shadow="shadow-none"
                 />
-                <div className="flex gap-2  justify-between">
-                  <div className="flex gap-2 mx-4 mb-2 items-center">
-                    {/* deleteButton */}
+                <div className="flex gap-2  ">
+                  {/* <div className="flex gap-2 mx-4 mb-2 items-center">
+                    deleteButton
                     {product.quantity === 1 ? (
                       <div
                         className="bg-new-blue px-2 rounded-l-lg grid justify-center cursor-pointer"
@@ -80,7 +80,7 @@ const CartPage = () => {
                     <div className="bg-new-blue px-2 rounded-r-lg grid justify-center">
                       <button>{plus}</button>
                     </div>
-                  </div>
+                  </div> */}
                   <div
                     className="mx-4"
                     onClick={() => removeProductCart(dispatches, product._id)}
