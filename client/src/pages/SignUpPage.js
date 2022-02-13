@@ -17,8 +17,6 @@ const SignUpPage = () => {
     password2: "",
   });
 
-  console.log(state);
-
   const { name, mobileNumber, email, password, password2 } = formData;
 
   const onChange = (e) =>

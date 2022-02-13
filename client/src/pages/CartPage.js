@@ -16,8 +16,6 @@ const CartPage = () => {
 
   const { plus, deleteIcon, minus } = cartIcon;
 
-  console.log(cartState);
-
   const { cart, loading } = cartState;
 
   const dispatches = { dispatch, alertDispatch };

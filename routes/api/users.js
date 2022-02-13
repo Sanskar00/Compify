@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../../models/Users");
 const config = require("config");
 const bcrypt = require("bcryptjs");
+const auth = require("../../middleware/auth");
 
 //@ route Post api/users
 //@decs register route
@@ -30,7 +31,7 @@ router.post(
 
     try {
       //See if user exists
-      let user = await User.findOne({ mobileNumber });
+      let user = await User.findOne({ email });
 
       if (user) {
         return res.status(400).json({
@@ -66,6 +67,50 @@ router.post(
           res.json({ token });
         }
       );
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server error");
+
+      console.log(req.body);
+    }
+  }
+);
+
+router.put(
+  "/editInfo",
+  [
+    auth,
+    [
+      body("name").not().isEmpty().withMessage("Name is required "),
+
+      body("mobileNumber").not().isEmpty().withMessage("Number is required"),
+      body("email").not().isEmpty().withMessage("Email is required"),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const { name, mobileNumber, email } = req.body;
+
+    try {
+      let user = await User.findOne({ email });
+
+      if (user) {
+        return res.status(400).json({
+          errors: [{ msg: "User already exists with this email" }],
+        });
+      }
+      //See if user exists
+      user = await User.findOneAndUpdate(
+        { _id: req.user.id },
+        { $set: req.body }
+      );
+
+      await user.save();
+
+      return res.json(user);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");

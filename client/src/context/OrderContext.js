@@ -10,7 +10,7 @@ export const OrderProvider = ({ children }) => {
       case orderActionTypes.ORDER_PRODUCT:
         return {
           ...state,
-          order: [...state.order, payload],
+          order: payload,
           loading: false,
         };
       case orderActionTypes.GET_PRODUCT:

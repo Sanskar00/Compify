@@ -18,6 +18,7 @@ export const CartProvider = ({ children }) => {
         return {
           ...state,
           cart: [...state.cart, payload],
+          addLoading: false,
           loading: false,
         };
       case cartActionTypes.REMOVE_PRODUCT:
@@ -33,7 +34,7 @@ export const CartProvider = ({ children }) => {
           ...state,
           cart: [],
           cartProduct: null,
-          loading: false,
+          loading: true,
         };
 
       default:
@@ -45,6 +46,7 @@ export const CartProvider = ({ children }) => {
     cart: [],
     cartProduct: null,
     loading: true,
+    addLoading: true,
     user: null,
   };
 

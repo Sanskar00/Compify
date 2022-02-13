@@ -41,8 +41,22 @@ const SmallScreen = () => {
         <h1 className="text-lg text-white ">{authState.user.name}</h1>
         <h2 className="text-sm text-gray-300">{authState.user.email}</h2>
       </div>
-      <div className="mt-4 h-64 grid grid-rows-4 gap-2  ">
-        <div className="shadow flex justify-between cursor-pointer  place-items-center text-gray-500">
+      <div className="mt-4 h-64 grid grid-rows-5 gap-2  ">
+        <div
+          className="shadow flex justify-between cursor-pointer  place-items-center text-gray-500"
+          onClick={() => {
+            navigate("/personalInfo");
+          }}
+        >
+          <h1>Personal Info</h1>
+          {rightArrow}
+        </div>
+        <div
+          className="shadow flex justify-between cursor-pointer  place-items-center text-gray-500"
+          onClick={() => {
+            navigate("/order");
+          }}
+        >
           <h1>My Orders</h1>
           {rightArrow}
         </div>

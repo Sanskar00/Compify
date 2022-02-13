@@ -54,7 +54,7 @@ export const getDirectPayment = async (dispatches, data) => {
     setAlert(
       alertDispatch,
       "Payment in process confirm to buy",
-      "text-greeen-700"
+      "text-green-500"
     );
 
     confirmClick(orderdispatch, "directContinue");
@@ -86,7 +86,7 @@ export const getClientSecret = async (dispatches, data) => {
     setAlert(
       alertDispatch,
       "Payment in process confirm to buy",
-      "text-green-700"
+      "text-green-500"
     );
 
     confirmClick(orderdispatch, "cardContinue");

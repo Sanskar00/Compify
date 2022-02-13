@@ -8,7 +8,6 @@ import { ProductContext } from "../context/ProductsContext";
 const LaptopTypeProducts = (props) => {
   const [state, dispatch] = useContext(ProductContext);
   const { categoryName } = useParams();
-  console.log(categoryName);
   useEffect(() => {
     laptopTypeProductsAction(dispatch, categoryName);
   }, []);
@@ -16,8 +15,6 @@ const LaptopTypeProducts = (props) => {
   const location = useLocation();
 
   const { laptopTypeProducts } = state;
-
-  console.log(laptopTypeProducts);
 
   return (
     <div className="mt-24 md:mt-36">

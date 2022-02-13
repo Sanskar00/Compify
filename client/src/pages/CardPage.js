@@ -9,7 +9,7 @@ const CardPage = () => {
   const [state, dispatch] = useContext(PersonalInfoContext);
   useEffect(() => {
     getCards(dispatch);
-  }, [getCards]);
+  }, []);
 
   const plus = (
     <svg
@@ -26,8 +26,6 @@ const CardPage = () => {
       ></path>
     </svg>
   );
-
-  console.log(state);
 
   const handleClick = () => {
     const url = document.URL;
@@ -54,7 +52,6 @@ const CardPage = () => {
           <h1 className="lg:col-start-2">No card added</h1>
         ) : (
           state.cards.map((card) => {
-            console.log(card.id);
             return <CardComponent card={card} />;
           })
         )}

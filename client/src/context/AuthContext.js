@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
     const { type, payload } = action;
     switch (type) {
       case authActionTypes.USER_LOADED:
+      case authActionTypes.EDIT_PROFILE:
         return {
           ...state,
           isAuthenticated: true,

@@ -80,6 +80,39 @@ export const login = async (dispatches, email, password) => {
   }
 };
 
+//Edit Personal Info
+export const editProfile = async (dispatches, formData) => {
+  const { dispatch, alertDispatch } = dispatches;
+  const { name, email, mobileNumber } = formData;
+  const config = {
+    heders: {
+      "Content-Type": "applicaion/json",
+    },
+  };
+  try {
+    const res = await axios.put(
+      "/api/users/editInfo",
+      { name, email, mobileNumber },
+      config
+    );
+
+    dispatch({
+      type: authActionTypes.EDIT_PROFILE,
+      payload: res.data,
+    });
+
+    setAlert(alertDispatch, "Profile Updated", "text-green-500");
+  } catch (error) {
+    const errors = error.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) =>
+        setAlert(alertDispatch, error.msg, "text-red-900")
+      );
+    }
+  }
+};
+
 //logout user /clear profule
 export const logout = (dispatch) => {
   dispatch({

@@ -21,6 +21,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { CardElement } from "@stripe/react-stripe-js";
 import CardPayElement from "../../components/PaymentPageComponent/CardPayElement";
 import { AlertContext } from "../../context/AlertContext";
+import { setAlert } from "../../actions/alertAction";
 
 const SPaymentPage = () => {
   const [personalState, personalDispatch] = useContext(PersonalInfoContext);
@@ -50,6 +51,10 @@ const SPaymentPage = () => {
     const url = document.URL;
     addCard(personalDispatch, url);
   };
+
+  const defaultAddress = personalState.addresses.find(
+    (address) => address.defaultAddress === true
+  );
 
   if (!personalState.cardLoading && personalState.session !== null) {
     window.location.href = `${personalState.session.session_url}`;
@@ -120,6 +125,20 @@ const SPaymentPage = () => {
           <button
             className="bg-light-flame-orange text-white text-lg rounded px-6 py-1"
             onClick={() => {
+              if (personalState.addresses.length === 0) {
+                return setAlert(
+                  alertDispatch,
+                  "Please add address",
+                  "text-red-700"
+                );
+                // console.log("true");
+              } else if (!defaultAddress) {
+                return setAlert(
+                  alertDispatch,
+                  "Please select address",
+                  "text-red-700"
+                );
+              }
               PaymentConfirmation(paymentProps);
             }}
           >

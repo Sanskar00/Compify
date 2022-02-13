@@ -5,8 +5,6 @@ import { AlertContext } from "../../context/AlertContext";
 const Alert = () => {
   const [state, dispatch] = useContext(AlertContext);
 
-  console.log(state);
-
   return (
     state.length > 0 &&
     state.map((alert) => (

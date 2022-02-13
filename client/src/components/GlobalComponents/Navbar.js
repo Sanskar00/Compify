@@ -50,7 +50,7 @@ const Navbar = () => {
               <li>
                 <span>About</span>
               </li>
-              <li>
+              {/* <li>
                 <section className="flex">
                   <span>Categories</span>
                   <span>
@@ -68,7 +68,7 @@ const Navbar = () => {
                     </svg>
                   </span>
                 </section>
-              </li>
+              </li> */}
             </div>
 
             {/* cart */}

@@ -10,11 +10,18 @@ const OrderSchema = new mongoose.Schema(
         address: {
           type: Object,
         },
+        date: {
+          type: Date,
+          default: Date.now,
+        },
       },
     ],
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+    },
+    email: {
+      type: String,
     },
     modiefiedOn: {
       type: Date,

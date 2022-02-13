@@ -94,7 +94,7 @@ const MidLargeScreen = () => {
         </div>
       </section>
 
-      <div className=" h-128 shadow border w-full mt-8 ">
+      <div className=" h-128 shadow border w-full mt-8 overflow-scroll">
         <Outlet />
       </div>
     </div>

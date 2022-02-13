@@ -18,7 +18,6 @@ module.exports = function (req, res, next) {
         res.status(401).json({ msg: "Token is not valid" });
       } else {
         req.user = verifiedToken.user;
-        console.log(verifiedToken.user);
         next();
       }
     }

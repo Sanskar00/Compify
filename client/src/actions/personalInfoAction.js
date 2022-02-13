@@ -28,7 +28,6 @@ export const getAddresses = async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: personalActionTypes.GET_ADDRESSES_ERROR,
       payload: {
@@ -91,7 +90,6 @@ export const addCard = async (dispatch, url) => {
       payload: res.data,
     });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: personalActionTypes.ADD_CARD_ERROR,
       payload: {
@@ -110,7 +108,6 @@ export const getCards = async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: personalActionTypes.GET_CARDS_ERROR,
       payload: {
@@ -131,7 +128,6 @@ export const deleteCards = async (dispatch, cardId) => {
       payload: cardId,
     });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: personalActionTypes.GET_CARDS_ERROR,
       payload: {
@@ -143,6 +139,5 @@ export const deleteCards = async (dispatch, cardId) => {
 };
 
 export const loadingState = (dispatch) => {
-  console.log("loading");
   dispatch(personalActionTypes.LOADING_TRUE);
 };

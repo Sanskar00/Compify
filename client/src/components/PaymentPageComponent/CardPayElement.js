@@ -11,10 +11,6 @@ import { AlertContext } from "../../context/AlertContext";
 import { OrderContext } from "../../context/OrderContext";
 
 const CardPayElement = ({ amount }) => {
-  var stripePromise = loadStripe(
-    "pk_test_51K0RvbSHqep0AJHb7IwAhCnheAkNNpLRFZlW0zY8pQ6EyusidDfENz34bREGpFjiddQansVxhLIJvrzgA4W573X100Ay157MmG"
-  );
-
   const [{}, alertDispatch] = useContext(AlertContext);
 
   const [{}, orderdispatch] = useContext(OrderContext);

@@ -40,7 +40,7 @@ export const PaymentConfirmation = async (props) => {
       })
       .then(function (result) {
         if (result.error) {
-          console.log(result.error.message);
+          setAlert(alertDispatch, result.error.message, "text-red-700");
         } else if (result.paymentIntent.status === "succeeded") {
           orderedProduct(orderDispatch, ids);
           setAlert(alertDispatch, "Your order is placed", "text-green-500");
@@ -55,7 +55,7 @@ export const PaymentConfirmation = async (props) => {
       })
       .then(function (result) {
         if (result.error) {
-          console.log(result.error.message);
+          setAlert(alertDispatch, result.error.message, "text-red-700");
         } else if (result.paymentIntent.status === "succeeded") {
           orderedProduct(orderDispatch, ids);
           setAlert(alertDispatch, "Your order is placed", "text-green-500");

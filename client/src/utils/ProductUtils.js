@@ -5,7 +5,6 @@ export const useOutsideAlerter = (ref, state, dispatch) => {
   useEffect(() => {
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
-        console.log(ref.current);
         if (state.visibility === "visible") {
           dispatch({
             type: productActionTypes.Search_Click,

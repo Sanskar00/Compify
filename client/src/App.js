@@ -90,6 +90,11 @@ function App() {
                       </Route>
                       <Route path="/address" element={<Address />} />
                       <Route path="/card" element={<CardPage />} />
+                      <Route
+                        path="/personalInfo"
+                        element={<PersonalInfoPage />}
+                      />
+                      <Route path="/order" element={<OrderPage />} />
 
                       <Route
                         path="/address/addAddress"

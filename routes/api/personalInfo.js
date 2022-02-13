@@ -207,12 +207,12 @@ router.put("/address/default/:addressId", auth, async (req, res) => {
 //@acess Protected
 router.post("/v1/checkout/sessions", auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select("-password");
-    console.log(req.body.url);
+    let user = await User.findById(req.user.id).select("-password");
 
     const customers = await stripe.customers.list();
 
     const customerData = customers.data;
+
     const isID = customerData.find((data) => data.id === user.customerIdStripe);
     let customer = "";
 
@@ -226,8 +226,8 @@ router.post("/v1/checkout/sessions", auth, async (req, res) => {
       });
 
       await User.updateOne(
-        { user: req.user.id },
-        { customerIdStripe: customer.id }
+        { _id: req.user.id },
+        { $set: { customerIdStripe: customer.id } }
       );
       await user.save();
     }
@@ -242,8 +242,6 @@ router.post("/v1/checkout/sessions", auth, async (req, res) => {
     const session_url = session.url;
 
     const sessionUrlArray = session_url.split("/");
-
-    console.log(sessionUrlArray[4]);
 
     res.json({ session, session_url });
   } catch (err) {

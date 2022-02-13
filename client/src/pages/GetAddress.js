@@ -12,10 +12,6 @@ import { setAlert } from "../actions/alertAction";
 import { AlertContext } from "../context/AlertContext";
 
 const GetAddress = () => {
-  useEffect(() => {
-    getCart(cartDispatch);
-  }, []);
-
   const [personalState, personalDispatch] = useContext(PersonalInfoContext);
 
   const [cartState, cartDispatch] = useContext(CartContext);
@@ -32,12 +28,10 @@ const GetAddress = () => {
 
   const cart = cartState.cart;
 
-  const product = cart[0];
-
   useEffect(() => {
-    console.log(cartState);
-    console.log(product);
-  }, []);
+    getCart(cartDispatch);
+  }, [cartState]);
+  const product = cart[0];
 
   const onChangeAddress = (e) => {
     setAddress(e.target.value);
@@ -55,10 +49,12 @@ const GetAddress = () => {
     changeDefaultAddress(personalDispatch, e.target.value);
   };
 
+  useEffect(() => {
+    console.log(cartState);
+  }, []);
   const navigate = useNavigate();
 
   return (
-    !personalState.loading &&
     !cartState.loading &&
     !authState.loading && (
       <div className="mt-20 w-screen grid gap-4 md:mt-24  md:w-screen md:place-items-center ">

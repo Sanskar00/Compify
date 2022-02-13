@@ -4,6 +4,7 @@ const auth = require("../../middleware/auth");
 const Order = require("../../models/Order");
 const Product = require("../../models/Product");
 const PersonalInfo = require("../../models/Personal");
+const User = require("../../models/Users");
 const { body, validationResult } = require("express-validator");
 const stripe = require("stripe")(
   "sk_test_51K0RvbSHqep0AJHbmysnTuSNsLp7ohhGS6thayodJOkEVjdxXSft0d8f7ZfBaeSDQXx5wvZZbIs8UZklFWJhBfTU00dylibS8m"
@@ -14,6 +15,8 @@ router.post("/:addressId/:productId", auth, async (req, res) => {
     const errors = validationResult(req);
 
     let order = await Order.findOne({ user: req.user.id });
+
+    let user = await User.findById(req.user.id).select("-password");
 
     const product = await Product.findById(req.params.productId);
 
@@ -37,6 +40,8 @@ router.post("/:addressId/:productId", auth, async (req, res) => {
     } else {
       order = new Order({
         user: req.user.id,
+        email: user.email,
+
         orderDetails: [
           {
             product,
@@ -94,13 +99,13 @@ router.post("/payment_intent_direct", auth, async (req, res) => {
 router.get("/", auth, async (req, res) => {
   try {
     let order = await Order.findOne({ user: req.user.id });
-    const products = order.orderDetails.products;
+    const orderDetails = order.orderDetails;
 
-    if (!order || products.length === 0) {
+    if (!order || orderDetails.length === 0) {
       return res.status(404).json({ msg: "No product is ordered" });
     }
 
-    res.json(order);
+    res.json(orderDetails);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");

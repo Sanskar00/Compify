@@ -3,7 +3,7 @@ import Button from "../GlobalComponents/Button";
 
 const LaptopReview = ({ product }) => {
   const handleClick = () => {
-    console.log("add review");
+    // console.log("add review");
   };
   return (
     <div className="my-2 lg:ml-64 md:ml-20">

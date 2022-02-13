@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
-
+import { editProfile } from "../../actions/authAction";
+import { AlertContext } from "../../context/AlertContext";
 import { AuthContext } from "../../context/AuthContext";
 
 const PersonalInfoPage = () => {
@@ -9,7 +10,8 @@ const PersonalInfoPage = () => {
 
   const [cursorPointer, setCursorPointer] = useState("cursor-not-allowed");
 
-  const [authState] = useContext(AuthContext);
+  const [authState, dispatch] = useContext(AuthContext);
+  const [{}, alertDispatch] = useContext(AlertContext);
 
   const { user } = authState;
 
@@ -21,7 +23,10 @@ const PersonalInfoPage = () => {
     email,
   });
 
-  console.log(formData);
+  const dispatches = {
+    dispatch,
+    alertDispatch,
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,8 +38,13 @@ const PersonalInfoPage = () => {
     setCursorPointer("");
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    editProfile(dispatches, formData);
+  };
+
   return (
-    <div className="mt-20  grid md:mt-0 md:px-6 md:py-6 gap-6">
+    <div className="mt-20  grid md:mt-0 md:px-6 md:py-6 gap-6 md:p-0 ">
       <section className="flex gap-4 items-center">
         <h1 className="font-semibold text-lg">Personal Information</h1>
         <h2
@@ -44,47 +54,53 @@ const PersonalInfoPage = () => {
           Edit
         </h2>
       </section>
-      <section className="flex gap-2">
-        <input
-          className={`w-2/3 h-8 pr-8 appearance-none  pl-2 rounded-lg border-gray-200 border leading-tight focus:outline-none focus:bg-white focus:border-new-blue md:w-1/2 lg:w-1/4 ${cursorPointer} text-sm`}
-          defaultValue={user.name}
-          type="text"
-          name="name"
-          disabled={`${disable}`}
-          onChange={handleChange}
-        ></input>
-      </section>
-      <section>
-        <h1 className="text-lg font-semibold">Email Address</h1>
-        <input
-          className={`w-2/3 h-8 pr-8 appearance-none  pl-2 rounded-lg border-gray-200 border leading-tight focus:outline-none focus:bg-white focus:border-new-blue md:w-1/2 lg:w-1/4 ${cursorPointer} text-sm`}
-          defaultValue={user.email}
-          type="text"
-          name="email"
-          disabled={`${disable}`}
-          onChange={handleChange}
-        ></input>
-      </section>
-      <section>
-        <h1 className="text-lg font-semibold">Phone Number</h1>
-        <input
-          className={`w-2/3 h-8 pr-8 appearance-none  pl-2 rounded-lg border-gray-200 border leading-tight focus:outline-none focus:bg-white focus:border-new-blue md:w-1/2 lg:w-1/4 ${cursorPointer} text-sm`}
-          defaultValue={user.mobileNumber}
-          type="text"
-          name="email"
-          disabled={`${disable}`}
-          onChange={handleChange}
-        ></input>
-      </section>
-      <button
-        className={`md:w-1/2 h-8 bg-new-blue text-white rounded-sm lg:w-1/4 ${display} text-sm`}
-        // onClick={() => {
-        //   logout(dispatch);
-        //   navigate("/");
-        // }}
+      <form
+        onSubmit={handleSubmit}
+        className="grid place-self-center w-full   gap-6"
       >
-        Save
-      </button>
+        <section className="flex gap-2">
+          <input
+            className={`w-2/3 h-8 pr-8 appearance-none  pl-2 rounded-lg border-gray-200 border leading-tight focus:outline-none focus:bg-white focus:border-new-blue md:w-1/2 lg:w-1/4 ${cursorPointer} text-sm`}
+            defaultValue={user.name}
+            type="text"
+            name="name"
+            disabled={`${disable}`}
+            onChange={handleChange}
+          ></input>
+        </section>
+        <section>
+          <h1 className="text-lg font-semibold">Email Address</h1>
+          <input
+            className={`w-2/3 h-8 pr-8 appearance-none  pl-2 rounded-lg border-gray-200 border leading-tight focus:outline-none focus:bg-white focus:border-new-blue md:w-1/2 lg:w-1/4 ${cursorPointer} text-sm`}
+            defaultValue={user.email}
+            type="text"
+            name="email"
+            disabled={`${disable}`}
+            onChange={handleChange}
+          ></input>
+        </section>
+        <section>
+          <h1 className="text-lg font-semibold">Phone Number</h1>
+          <input
+            className={`w-2/3 h-8 pr-8 appearance-none  pl-2 rounded-lg border-gray-200 border leading-tight focus:outline-none focus:bg-white focus:border-new-blue md:w-1/2 lg:w-1/4 ${cursorPointer} text-sm`}
+            defaultValue={user.mobileNumber}
+            type="text"
+            name="email"
+            disabled={`${disable}`}
+            onChange={handleChange}
+          ></input>
+        </section>
+        <button
+          className={`w-2/3  md:w-1/2 h-8 bg-new-blue text-white rounded-sm lg:w-1/4 ${display} text-sm`}
+          type="submit"
+          // onClick={() => {
+          //   logout(dispatch);
+          //   navigate("/");
+          // }}
+        >
+          Save
+        </button>
+      </form>
     </div>
   );
 };
