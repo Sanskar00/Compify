@@ -32,7 +32,7 @@ const LoginPage = () => {
   };
 
   if (state.isAuthenticated) {
-    navigate("/");
+    window.location.href = "/";
   }
 
   return (
