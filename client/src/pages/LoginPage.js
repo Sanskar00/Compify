@@ -31,7 +31,7 @@ const LoginPage = () => {
     login(dispatches, email, password);
   };
 
-  if (state.isAuthenticated === true) {
+  if (state.isAuthenticated) {
     navigate("/");
   }
 
