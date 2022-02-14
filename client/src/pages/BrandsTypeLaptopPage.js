@@ -4,6 +4,7 @@ import { brandsProductsAction } from "../actions/productAction";
 import { useLocation, useParams } from "react-router";
 import ProductCard from "../components/GlobalComponents/ProductCard";
 import { ProductContext } from "../context/ProductsContext";
+import Spinner from "../components/GlobalComponents/Spinner";
 
 const BrandsTypeLaptopPage = (props) => {
   const [state, dispatch] = useContext(ProductContext);
@@ -19,11 +20,15 @@ const BrandsTypeLaptopPage = (props) => {
       <h1 className="text-2xl font-bold md:mx-20 lg:mx-48">
         {brand.charAt(0).toUpperCase() + brand.slice(1)} Laptops
       </h1>
-      <div className="mt-4 mx-2 md:mx-32 lg:mx-60  md:w-2/3  grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {brandTypeProducts.map((product) => {
-          return <ProductCard product={product} key={product._id} />;
-        })}
-      </div>
+      {brandTypeProducts.loading ? (
+        <Spinner />
+      ) : (
+        <div className="mt-4 mx-2 md:mx-32 lg:mx-60  md:w-2/3  grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {brandTypeProducts.map((product) => {
+            return <ProductCard product={product} key={product._id} />;
+          })}
+        </div>
+      )}
     </div>
   );
 };

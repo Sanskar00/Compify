@@ -26,13 +26,13 @@ const ProductCard = ({ product, shadow }) => {
             {product.model} , {product.cpuType} {product.memorySize} RAM/
             {product.storageSize} {product.display} Laptop
           </h2>
-          <div className="flex">
+          {/* <div className="flex">
             <Star />
             <Star />
             <Star />
             <Star />
             <Star />
-          </div>
+          </div> */}
           <div>
             <h2 className="text-sm items-center flex">
               <Rupee />

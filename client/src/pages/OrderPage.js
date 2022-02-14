@@ -3,6 +3,7 @@ import { OrderContext } from "../context/OrderContext";
 import { getOrders } from "../actions/orderAction";
 import { ReactComponent as Rupee } from "../assets/logo/rupee.svg";
 import moment from "moment";
+import Spinner from "../components/GlobalComponents/Spinner";
 
 const OrderPage = () => {
   const [state, dispatch] = useContext(OrderContext);
@@ -13,14 +14,14 @@ const OrderPage = () => {
 
   const { order } = state;
 
-  console.log(order);
-
   return (
-    <div className="mt-20  grid md:mt-0 md:px-6 md:py-6 gap-6 md:p-0 ">
+    <div className="mt-20  grid md:mt-0 md:px-6 md:py-6 gap-6 md:p-0 relative">
       <h1 className="font-semibold text-lg">Your Orders</h1>
       {order.map((orderDetails) => {
         const { product, address, date } = orderDetails;
-        return (
+        return order.loading ? (
+          <Spinner />
+        ) : (
           <div
             className="shadow md:w-full md md:h-36 border flex place-self-center p-2 gap-4 justify-around "
             key={orderDetails._id}

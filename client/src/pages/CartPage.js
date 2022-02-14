@@ -33,7 +33,7 @@ const CartPage = () => {
     <div className="mt-20 md:mt-36 w-screen grid ">
       <h1 className="text-2xl font-bold md:mx-20 lg:mx-48">Shopping Cart</h1>
       <div className="mt-4 mx-2 md:mx-32 lg:mx-60  md:w-2/3  grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {!loading ? (
+        {loading ? (
           <Spinner />
         ) : cart.length === 0 ? (
           <h1>No product is added in cart!</h1>
