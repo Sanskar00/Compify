@@ -63,7 +63,7 @@ const LaptopViewPage = () => {
   };
 
   return (
-    <div className="w-screen grid">
+    <div className="w-screen grid overflow-x-hidden">
       <div className="h-full mt-20 md:mt-28  grid md:flex md:flex-row-reverse overflow-hidden md:mr-12  ">
         <div className="w-full h-96  relative grid place-items-center  place-self-center md:place-self-start   ">
           {product === null || loading === true ? (
